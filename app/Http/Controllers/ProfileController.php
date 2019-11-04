@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Profile;
 
@@ -35,20 +36,29 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'phone' => 'required|digits:11',
-            'dob' => 'required|date',
-            'gender' => 'required|in:male|in:female'
-        ]);
+        if(Profile::where('phone', $request->phone)->doesntExist()){
+            $data = $request->validate([
+                'phone' => 'required|digits:11',
+                'dob' => 'required|date',
+                'gender' => ['required', Rule::in(['male','female'])],
+            ]);
 
-        $profile = new Profile;
-        $profile->dob = $request->dob;
-        $profile->address = $request->address;
-        $profile->nationality = $request->nationality;
-        $profile->gender = $request->gender;
+            $profile = new Profile;
+            $profile->phone = $request->phone;
+            $profile->dob = $request->dob;
+            $profile->address = $request->address;
+            $profile->nationality = $request->nationality;
+            $profile->gender = $request->gender;
 
-        // save the data
-        $profile->save();
+            // save the data and redirect accordingly
+            if($profile->updateOrInsert()){
+                return redirect('/home')->with('status', 'Profile updated!');
+            }else{
+                return redirect('/profile')->with('status','There is an error, please check and correct it');
+            }
+        }else{
+            return redirect('/profile')->with('status','The phone number '.$request->phone.' has been taken');
+        }
     }
 
     /**

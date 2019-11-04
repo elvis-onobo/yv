@@ -17,12 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 // profile
-Route::get('/profile', 'ProfileController@create')->name('profile');
-Route::get('/update-password', 'HomeController@index')->name('update-password');
-Route::post('/profile/store', 'ProfileController@store')->name('store-profile');
+Route::get('/profile', 'ProfileController@create')->name('profile')->middleware('auth');
+Route::post('/profile/store', 'ProfileController@store')->name('store-profile')->middleware('auth');
+// password
+Route::get('/update-password', 'HomeController@index')->name('update-password')->middleware('auth');
 // account
-Route::get('/account', 'AccountController@create')->name('account');
+Route::get('/account', 'AccountController@create')->name('account')->middleware('auth');
 // kin
-Route::get('/kin', 'KinController@create')->name('kin');
+Route::get('/kin', 'KinController@create')->name('kin')->middleware('auth');

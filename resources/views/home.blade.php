@@ -6,6 +6,11 @@
         <div class="col-md-12">
             <div class="">
                 <!-- <div class="card-header">Dashboard</div> -->
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
 
                 <div class="row justify-content-center p-2">
                         <div class="col-md-3 card border-0 rounded-0 p-0 m-0">
