@@ -23,7 +23,7 @@ class KinController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.kin');
     }
 
     /**

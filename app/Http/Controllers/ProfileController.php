@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Profile;
 
 class ProfileController extends Controller
 {
@@ -34,7 +35,20 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'phone' => 'required|digits:11',
+            'dob' => 'required|date',
+            'gender' => 'required|in:male|in:female'
+        ]);
+
+        $profile = new Profile;
+        $profile->dob = $request->dob;
+        $profile->address = $request->address;
+        $profile->nationality = $request->nationality;
+        $profile->gender = $request->gender;
+
+        // save the data
+        $profile->save();
     }
 
     /**
