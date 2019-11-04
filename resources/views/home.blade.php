@@ -7,6 +7,16 @@
             <div class="">
                 <!-- <div class="card-header">Dashboard</div> -->
 
+                <div class="row justify-content-center p-2">
+                        <div class="col-md-3 card border-0 rounded-0 p-0 m-0">
+                            <img class="card-img-top" src="{{ URL::to('/') }}/img/dummies/works/1.jpg" alt="img" />                        
+                        </div>
+                        <div class="col-md-6 card border-0 rounded-0 p-2 m-0">
+                            <p>Profile Details</p>
+                            <p>Name: Elvis Onobo</p>
+                        </div>
+                </div>
+
                 <div class="row justify-content-center">
                     
                     <div class="col-md-3 card border-0 rounded-0 m-1 p-2 current">
