@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Profile;
+use App\User;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -43,15 +45,19 @@ class ProfileController extends Controller
                 'gender' => ['required', Rule::in(['male','female'])],
             ]);
 
-            $profile = new Profile;
-            $profile->phone = $request->phone;
-            $profile->dob = $request->dob;
-            $profile->address = $request->address;
-            $profile->nationality = $request->nationality;
-            $profile->gender = $request->gender;
+            $profile = [
+                'phone' => $request->phone,
+                'dob' => $request->dob,
+                'address' => $request->address,
+                'nationality' => $request->nationality,
+                'gender' => $request->gender
+            ];
 
             // save the data and redirect accordingly
-            if($profile->updateOrInsert()){
+            if(Profile::updateOrInsert(
+                ['user_id'=>auth()->user()->id],
+                $profile
+                )){
                 return redirect('/home')->with('status', 'Profile updated!');
             }else{
                 return redirect('/profile')->with('status','There is an error, please check and correct it');
