@@ -15,11 +15,12 @@ class CreateKinsTable extends Migration
     {
         Schema::create('kins', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user_id');
             $table->string('name');
             $table->string('relationship');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('phone');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

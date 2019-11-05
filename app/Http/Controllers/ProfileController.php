@@ -45,7 +45,7 @@ class ProfileController extends Controller
                 'gender' => ['required', Rule::in(['male','female'])],
             ]);
 
-            $profile = [
+            $values = [
                 'phone' => $request->phone,
                 'dob' => $request->dob,
                 'address' => $request->address,
@@ -56,7 +56,7 @@ class ProfileController extends Controller
             // save the data and redirect accordingly
             if(Profile::updateOrInsert(
                 ['user_id'=>auth()->user()->id],
-                $profile
+                $values
                 )){
                 return redirect('/home')->with('status', 'Profile updated!');
             }else{
@@ -78,37 +78,5 @@ class ProfileController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

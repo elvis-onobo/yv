@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Account;
+use App\User;
+use Auth;
 
 class AccountController extends Controller
 {
@@ -34,7 +37,31 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Account::where('acc_number', $request->acc_number)->doesntExist()){
+            $data = $request->validate([
+                'name' => 'required',
+                'acc_number' => 'required|digits:10',
+                'bank' => 'required'
+            ]);
+
+            $values = [
+                'name' => $request->name,
+                'acc_number' => $request->acc_number,
+                'bank' => $request->bank
+            ];
+
+            // save the data and redirect accordingly
+            if(Account::updateOrInsert(
+                ['user_id'=>auth()->user()->id],
+                $values
+                )){
+                return redirect('/home')->with('status', 'Account updated!');
+            }else{
+                return redirect('/account')->with('status','Please check and refill correctly');
+            }
+        }else{
+            return redirect('/account')->with('status','The account number '.$request->acc_number.' has been taken');
+        }
     }
 
     /**

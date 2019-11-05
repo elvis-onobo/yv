@@ -8,8 +8,14 @@
                 <div class="card-header">{{ __('Account Details') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('store-account') }}">
                         @csrf
+
+                        @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                        @endif
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -26,12 +32,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Account Number') }}</label>
+                            <label for="acc_number" class="col-md-4 col-form-label text-md-right">{{ __('Account Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="acc_number" type="number" class="form-control @error('phone') is-invalid @enderror" name="acc_number" required autocomplete="acc_number">
 
-                                @error('phone')
+                                @error('acc_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -40,17 +46,23 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Bank') }}</label>
+                            <label for="bank" class="col-md-4 col-form-label text-md-right">{{ __('Bank') }}</label>
 
                             <div class="col-md-6">
-                                <input id="dob" type="date" class="form-control" name="dob" required>
+                                <input id="bank" type="text" class="form-control" name="bank" required>
+                            
+                                @error('bank')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Update Account') }}
                                 </button>
                             </div>
                         </div>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Kin;
+use App\User;
+use Auth;
 
 class KinController extends Controller
 {
@@ -34,7 +37,30 @@ class KinController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'relationship' => 'required',
+            'phone_number' => 'required|digits:11',
+        ]);
+
+        $values = [
+            'name' => $request->name,
+            'relationship' => $request->relationship,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address
+        ];
+
+        // save the data and redirect accordingly
+        if(Kin::updateOrInsert(
+            ['user_id'=>auth()->user()->id],
+            $values
+            )){
+            return redirect('/home')->with('status', 'Next of updated!');
+        }else{
+            return redirect('/kin')->with('status','Please check and refill correctly');
+        }
+    
     }
 
     /**
