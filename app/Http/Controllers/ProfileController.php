@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Http\File;
 use App\Profile;
 use App\User;
@@ -45,18 +46,18 @@ class ProfileController extends Controller
                 'phone' => 'digits:11',
                 'dob' => 'date',
                 'gender' => [ Rule::in(['male','female'])],
-                'picture' => 'size:2000'
+                
             ]);
 
 
-            if( //file is stored ){
+            if( $request->hasFile('picture') ){
                 $values = [
                     'phone' => $request->phone,
                     'dob' => $request->dob,
                     'address' => $request->address,
                     'nationality' => $request->nationality,
                     'gender' => $request->gender,
-                    'picture' => $url
+                    'picture' => $request->picture->path()
                 ];
     
                 // save the data and redirect accordingly
