@@ -43,10 +43,10 @@ class ProfileController extends Controller
     {
         if(Profile::where('phone', $request->phone)->doesntExist()){
             $data = $request->validate([
-                'phone' => 'digits:11',
-                'dob' => 'date',
-                'gender' => [ Rule::in(['male','female'])],
-                
+                'phone' => 'nullable|digits:11',
+                'dob' => 'nullable|date',
+                'gender' => ['nullable', Rule::in(['male','female'])],
+                'picture' => 'nullable|size:2000'
             ]);
 
 
