@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Account;
 use App\Profile;
 use App\User;
+use App\Kin;
 use Auth;
 
 
@@ -28,8 +30,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = DB::table('profiles')->get();
-                
+        $users = User::all();
+               return $users;
         return view('home', compact('users'));
     }
 }

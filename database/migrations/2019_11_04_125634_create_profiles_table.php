@@ -15,7 +15,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id')->unique();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->unique();
             $table->string('phone')->unique();
             $table->string('dob');
             $table->string('address');

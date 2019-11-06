@@ -15,7 +15,7 @@ class CreateKinsTable extends Migration
     {
         Schema::create('kins', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->string('name');
             $table->string('relationship');
             $table->string('email')->nullable();

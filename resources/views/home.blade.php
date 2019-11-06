@@ -16,11 +16,11 @@
                     @foreach($users as $user)
                     <div class="row justify-content-center p-2">
                             <div class="col-md-3 card border-0 rounded-0 p-0 m-0">
-                                <img class="card-img-top" src="{{ asset('storage/'.$user->picture) }}" alt="img" />                        
+                                <img class="card-img-top" src="{{ asset('storage/'.$user->picture) }}" alt="{{ $user->name }} profile picture" />                        
                             </div>
                             <div class="col-md-6 card border-0 rounded-0 p-2 m-0">
                                 <p>Profile Details</p>
-                                <p>Name: Elvis Onobo</p>
+                                <p>Name: {{ $user->name }}</p>
                                 <p>Address: {{ $user->address }}</p>
                             </div>
                     </div>
