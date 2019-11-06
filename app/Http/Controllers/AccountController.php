@@ -39,13 +39,13 @@ class AccountController extends Controller
     {
         if(Account::where('acc_number', $request->acc_number)->doesntExist()){
             $data = $request->validate([
-                'name' => 'required',
+                'username' => 'required',
                 'acc_number' => 'required|digits:10',
                 'bank' => 'required'
             ]);
 
             $values = [
-                'name' => $request->name,
+                'username' => $request->username,
                 'acc_number' => $request->acc_number,
                 'bank' => $request->bank
             ];

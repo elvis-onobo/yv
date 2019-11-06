@@ -15,8 +15,8 @@ class CreateAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->unique();
-            $table->string('name');
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->string('username');
             $table->string('acc_number')->unique;
             $table->string('bank');
             $table->timestamps();

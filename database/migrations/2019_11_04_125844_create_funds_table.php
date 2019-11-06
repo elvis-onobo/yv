@@ -15,6 +15,8 @@ class CreateFundsTable extends Migration
     {
         Schema::create('funds', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->unique();
+
             $table->timestamps();
         });
     }

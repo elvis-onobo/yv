@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Account;
@@ -30,8 +31,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-               return $users;
+        $users = DB::table('users')
+                    ->join('profiles', 'users.id', 'profiles.user_id')
+                    ->join('accounts', 'users.id', 'accounts.user_id')
+                    // ->join('kins', 'users.id', 'kins.user_id')
+                    ->select('users.*', 'profiles.phone', 'profiles.dob',
+                            'profiles.address', 'profiles.nationality',
+                            'profiles.gender', 'profiles.picture',
+                            'accounts.username', 'accounts.acc_number',
+                           'accounts.bank' 
+                           //'kins.name', 'kins.relationship',
+                        // 'kins.email', 'kins.phone', 'kins.address'
+                        )
+                    ->where('users.id', auth()->user()->id)
+                    ->get();
+                    
         return view('home', compact('users'));
     }
 }

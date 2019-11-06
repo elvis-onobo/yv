@@ -18,10 +18,26 @@
                             <div class="col-md-3 card border-0 rounded-0 p-0 m-0">
                                 <img class="card-img-top" src="{{ asset('storage/'.$user->picture) }}" alt="{{ $user->name }} profile picture" />                        
                             </div>
-                            <div class="col-md-6 card border-0 rounded-0 p-2 m-0">
-                                <p>Profile Details</p>
-                                <p>Name: {{ $user->name }}</p>
-                                <p>Address: {{ $user->address }}</p>
+                            <div class="col-md-3 card border-0 rounded-0 p-2 m-0">
+                                <h4>Profile Details</h4>
+                                <span class="fa fa-user"> {{ $user->name }}</span>
+                                <span>{{ $user->dob }}</span>
+                                <span>{{ $user->gender }}</span>
+                                <span>{{ $user->phone }}</span>
+                                <span>{{ $user->address }}</span>
+                                <span>{{ $user->nationality }}</span>
+                            </div>
+                            <div class="col-md-3 card border-0 rounded-0 p-2 m-0">
+                                <div>
+                                    <h4>Account Details</h4>
+                                    <span class="fa fa-user"> {{ $user->username }}</span>
+                                    <span>{{ $user->acc_number }}</span>
+                                    <span>{{ $user->bank }}</span>
+                                </div>
+                                <hr />
+                                <div>
+                                <h4>Next of Kin</h4>
+                                </div>
                             </div>
                     </div>
                     @endforeach

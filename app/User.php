@@ -39,19 +39,19 @@ class User extends Authenticatable
     ];
 
     public function profile(){
-        return $this->hasOne('App\Profile');
+        return $this->hasOne('App\Profile', 'user_id');
     }
 
     public function account(){
-        return $this->hasOne('App\Account');
+        return $this->hasOne('App\Account',  'user_id');
     }
 
     public function kin(){
-        return $this->hasOne('App\Kin');
+        return $this->hasOne('App\Kin', 'user_id');
     }
 
-    public function funds()
+    public function fund()
     {
-        return $this->hasMany('App\Fund');
+        return $this->hasMany('App\Fund', 'user_id');
     }
 }

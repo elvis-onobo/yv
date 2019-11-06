@@ -30,7 +30,8 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('user.profile');
+        $profile = Profile::find(auth()->user()->id);
+        return view('user.profile', compact($profile));
     }
 
     /**
@@ -50,6 +51,9 @@ class ProfileController extends Controller
             ]);
 
             if($request->hasFile('picture')){
+                // delete the previous picture and store new one
+                $pixToDelete = Profile::find(auth()->user()->id)->picture;
+                Storage::disk('public')->delete($pixToDelete);
                 $request->file('picture')->store('pictures', 'public');
             }else{
                 $useAvatar = 'avatar.jpg';
