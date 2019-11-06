@@ -41,36 +41,39 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        if(Profile::where('phone', $request->phone)->doesntExist()){
+        if(Profile::where('phone', $request->phone)->doesntExist() ){
             $data = $request->validate([
-                'phone' => 'nullable|digits:11',
+                'phone' => 'sometimes|digits:11',
                 'dob' => 'nullable|date',
                 'gender' => ['nullable', Rule::in(['male','female'])],
-                'picture' => 'nullable|size:2000'
+                'picture' => 'nullable'
             ]);
 
-
-            if( $request->hasFile('picture') ){
-                $values = [
-                    'phone' => $request->phone,
-                    'dob' => $request->dob,
-                    'address' => $request->address,
-                    'nationality' => $request->nationality,
-                    'gender' => $request->gender,
-                    'picture' => $request->picture->path()
-                ];
-    
-                // save the data and redirect accordingly
-                if(Profile::updateOrInsert(
-                    ['user_id'=>auth()->user()->id],
-                    $values
-                    )){
-                    return redirect('/home')->with('status', 'Profile updated!');
-                }else{
-                    return redirect('/profile')->with('status','There is an error, please check and correct it');
-                }                
+            if($request->hasFile('picture')){
+                $request->file('picture')->store('pictures', 'public');
+            }else{
+                $useAvatar = 'avatar.jpg';
             }
 
+            $values = [
+                'phone' => $request->phone,
+                'dob' => $request->dob,
+                'address' => $request->address,
+                'nationality' => $request->nationality,
+                'gender' => $request->gender,
+                'picture' => $request->file('picture')->store('pictures', 'public')
+            ];
+
+            // save the data and redirect accordingly
+            if(Profile::updateOrInsert(
+                ['user_id'=>auth()->user()->id],
+                $values
+                )){
+                return redirect('/home')->with('status', 'Profile updated!');
+            }else{
+                return redirect('/profile')->with('status','There is an error, please check and correct it');
+            }                
+              
         }else{
             return redirect('/profile')->with('status','The phone number '.$request->phone.' has been taken');
         }

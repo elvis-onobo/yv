@@ -12,15 +12,20 @@
                     </div>
                 @endif
 
-                <div class="row justify-content-center p-2">
-                        <div class="col-md-3 card border-0 rounded-0 p-0 m-0">
-                            <img class="card-img-top" src="{{ URL::to('/') }}/img/dummies/works/1.jpg" alt="img" />                        
-                        </div>
-                        <div class="col-md-6 card border-0 rounded-0 p-2 m-0">
-                            <p>Profile Details</p>
-                            <p>Name: Elvis Onobo</p>
-                        </div>
-                </div>
+                
+                    @foreach($users as $user)
+                    <div class="row justify-content-center p-2">
+                            <div class="col-md-3 card border-0 rounded-0 p-0 m-0">
+                                <img class="card-img-top" src="{{ asset('storage/'.$user->picture) }}" alt="img" />                        
+                            </div>
+                            <div class="col-md-6 card border-0 rounded-0 p-2 m-0">
+                                <p>Profile Details</p>
+                                <p>Name: Elvis Onobo</p>
+                                <p>Address: {{ $user->address }}</p>
+                            </div>
+                    </div>
+                    @endforeach
+                
 
                 <div class="row justify-content-center">
                     

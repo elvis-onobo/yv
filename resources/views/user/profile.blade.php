@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Profile') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('store-profile') }}" enctype="multipart/data">
+                    <form method="POST" action="{{ route('store-profile') }}" enctype="multipart/form-data">
                         @csrf
 
                         @if (session('status'))
@@ -87,7 +87,7 @@
                             <label for="picture" class="col-md-4 col-form-label text-md-right">{{ __('Piture') }}</label>
 
                             <div class="col-md-6">
-                                <input id="picture" type="file" class="form-control" name="picture"  value="{{ old('gender') }}" accept="image/*">
+                                <input id="picture" type="file" class="form-control" name="picture"  value="{{ old('picture') }}" accept="image/*">
                             </div>
                             @error('picture')
                                 <span class="invalid-feedback" role="alert">

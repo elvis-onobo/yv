@@ -17,11 +17,11 @@ class CreateProfilesTable extends Migration
             $table->bigIncrements('id');
             $table->string('user_id')->unique();
             $table->string('phone')->unique();
-            $table->string('dob')->nullable();
-            $table->string('address')->nullable();
-            $table->string('nationality')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('picture')->nullable();
+            $table->string('dob');
+            $table->string('address');
+            $table->string('nationality');
+            $table->string('gender');
+            $table->string('picture');
             $table->timestamps();
         });
     }
