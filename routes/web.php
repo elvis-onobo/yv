@@ -28,4 +28,4 @@ Route::post('/account/store', 'AccountController@store')->name('store-account')-
 Route::get('/kin', 'KinController@create')->name('kin')->middleware('auth');
 Route::post('/kin/store', 'KinController@store')->name('store-kin')->middleware('auth');
 // password
-Route::get('/update-password', 'HomeController@index')->name('update-password')->middleware('auth');
+Route::get('/password/update', 'HomeController@index')->name('update-password')->middleware('auth');
