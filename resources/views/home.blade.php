@@ -27,7 +27,7 @@
                                 <span>{{ $user->phone }}</span>
                                 <span>{{ $user->address }}</span>
                                 <span>{{ $user->nationality }}</span>
-                                <span><a href="{{ route('edit-profile') }}">Edit Profile</a></span>
+                                <span><a href="{{ route('profile') }}">Update</a></span>
                             </div>
                             <div class="col-md-3 card border-0 rounded-0 p-2 m-0">
                             @foreach($accounts as $account)
@@ -36,7 +36,7 @@
                                     <span class="fa fa-user"> {{ $account->username }}</span>
                                     <span>{{ $account->acc_number }}</span>
                                     <span>{{ $account->bank }}</span>
-                                    <span><a href="{{ route('edit-account') }}">Update Account</a></span>
+                                    <span><a href="{{ route('account') }}">Update</a></span>
                                 </div>
                             @endforeach
                                 <hr />
@@ -48,7 +48,7 @@
                                 <span>{{ $kin->relationship }}</span>
                                 <span>{{ $kin->address_kin }}</span>
                                 <span>{{ $kin->email_kin }}</span>
-                                <span><a href="{{ route('edit-kin') }}">Update Kin</a></span>
+                                <span><a href="{{ route('kin') }}">Update</a></span>
                                 @endforeach
 
                                 </div>
