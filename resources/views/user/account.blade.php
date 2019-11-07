@@ -21,7 +21,7 @@
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username', $account->username) }}" required autocomplete="username" autofocus>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -35,7 +35,7 @@
                             <label for="acc_number" class="col-md-4 col-form-label text-md-right">{{ __('Account Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="acc_number" type="number" class="form-control @error('phone') is-invalid @enderror" name="acc_number" required autocomplete="acc_number">
+                                <input id="acc_number" type="number" class="form-control @error('phone') is-invalid @enderror" name="acc_number" value="{{ old('acc_number', $account->acc_number) }}" required autocomplete="acc_number">
 
                                 @error('acc_number')
                                     <span class="invalid-feedback" role="alert">
@@ -49,7 +49,7 @@
                             <label for="bank" class="col-md-4 col-form-label text-md-right">{{ __('Bank') }}</label>
 
                             <div class="col-md-6">
-                                <input id="bank" type="text" class="form-control" name="bank" required>
+                                <input id="bank" type="text" class="form-control" name="bank" value="{{ old('bank', $account->bank) }}" required>
                             
                                 @error('bank')
                                     <span class="invalid-feedback" role="alert">

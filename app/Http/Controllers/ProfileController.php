@@ -55,7 +55,7 @@ class ProfileController extends Controller
             $pixToDelete = Profile::find(auth()->user()->id)->picture;
             Storage::disk('public')->delete($pixToDelete);
             $request->file('picture')->store('pictures', 'public');
-        }else{}
+        }
 
         $values = [
             'phone' => $request->phone,
