@@ -28,4 +28,5 @@ Route::post('/account/store', 'AccountController@store')->name('store-account')-
 Route::get('/kin', 'KinController@create')->name('kin')->middleware('auth');
 Route::post('/kin/store', 'KinController@store')->name('store-kin')->middleware('auth');
 // password
-Route::get('/password/update', 'HomeController@index')->name('update-password')->middleware('auth');
+Route::get('/password', 'PasswordChangeController@password')->name('password')->middleware('auth');
+Route::post('/password/update', 'PasswordChangeController@update')->name('store-password')->middleware('auth');

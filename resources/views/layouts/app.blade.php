@@ -91,8 +91,8 @@
                                 <a class="dropdown-item" href="{{ route('profile') }}">
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="{{ route('update-password') }}">
-                                    Update Password
+                                <a class="dropdown-item" href="{{ route('password') }}">
+                                    Change Password
                                 </a>
                                 <a class="dropdown-item" href="{{ route('account') }}">
                                     Account Details
