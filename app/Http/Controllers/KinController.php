@@ -40,22 +40,19 @@ class KinController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'relationship' => 'required',
-            'phone_number' => 'required|digits:11',
+            'phone' => 'required|digits:11',
         ]);
 
-        $values = [
-            'name' => $request->name,
-            'relationship' => $request->relationship,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'address' => $request->address
-        ];
+        $kin = new Kin;
+        $kin->user_id = auth()->user()->id;
+        $kin->name_kin = $request->name;
+        $kin->relationship = $request->relationship;
+        $kin->email_kin = $request->email;
+        $kin->phone_kin = $request->phone;
+        $kin->address_kin = $request->address;
 
         // save the data and redirect accordingly
-        if(Kin::updateOrInsert(
-            ['user_id'=>auth()->user()->id],
-            $values
-            )){
+        if($kin->save()){
             return redirect('/home')->with('status', 'Next of updated!');
         }else{
             return redirect('/kin')->with('status','Please check and refill correctly');

@@ -16,11 +16,11 @@ class CreateKinsTable extends Migration
         Schema::create('kins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->unique();
-            $table->string('name');
+            $table->string('name_kin');
             $table->string('relationship');
-            $table->string('email')->nullable();
-            $table->string('phone');
-            $table->string('address')->nullable();
+            $table->string('email_kin')->nullable();
+            $table->string('phone_kin');
+            $table->string('address_kin')->nullable();
             $table->timestamps();
         });
     }

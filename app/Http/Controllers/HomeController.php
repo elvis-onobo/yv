@@ -33,19 +33,14 @@ class HomeController extends Controller
     {
         $users = DB::table('users')
                     ->join('profiles', 'users.id', 'profiles.user_id')
-                    ->join('accounts', 'users.id', 'accounts.user_id')
-                    // ->join('kins', 'users.id', 'kins.user_id')
                     ->select('users.*', 'profiles.phone', 'profiles.dob',
                             'profiles.address', 'profiles.nationality',
-                            'profiles.gender', 'profiles.picture',
-                            'accounts.username', 'accounts.acc_number',
-                           'accounts.bank' 
-                           //'kins.name', 'kins.relationship',
-                        // 'kins.email', 'kins.phone', 'kins.address'
-                        )
+                            'profiles.gender', 'profiles.picture')
                     ->where('users.id', auth()->user()->id)
                     ->get();
+        $accounts = Account::find(auth()->user()->id)->all();
+        $kins = Kin::find(auth()->user()->id)->all();
                     
-        return view('home', compact('users'));
+        return view('home', compact('users', 'accounts', 'kins'));
     }
 }

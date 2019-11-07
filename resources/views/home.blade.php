@@ -6,11 +6,13 @@
         <div class="col-md-12">
             <div class="">
                 <!-- <div class="card-header">Dashboard</div> -->
+                <div class="col-md-8">
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
                     </div>
                 @endif
+                </div>
 
                 
                     @foreach($users as $user)
@@ -26,17 +28,30 @@
                                 <span>{{ $user->phone }}</span>
                                 <span>{{ $user->address }}</span>
                                 <span>{{ $user->nationality }}</span>
+                                <span><a href="{{ route('edit-profile') }}">Edit Profile</a></span>
                             </div>
                             <div class="col-md-3 card border-0 rounded-0 p-2 m-0">
+                            @foreach($accounts as $account)
                                 <div>
                                     <h4>Account Details</h4>
-                                    <span class="fa fa-user"> {{ $user->username }}</span>
-                                    <span>{{ $user->acc_number }}</span>
-                                    <span>{{ $user->bank }}</span>
+                                    <span class="fa fa-user"> {{ $account->username }}</span>
+                                    <span>{{ $account->acc_number }}</span>
+                                    <span>{{ $account->bank }}</span>
+                                    <span><a href="{{ route('edit-account') }}">Update Account</a></span>
                                 </div>
+                            @endforeach
                                 <hr />
                                 <div>
                                 <h4>Next of Kin</h4>
+                                @foreach($kins as $kin)                            
+                                <span>{{ $kin->name_kin }}</span>
+                                <span>{{ $kin->phone_kin }}</span>
+                                <span>{{ $kin->relationship }}</span>
+                                <span>{{ $kin->address_kin }}</span>
+                                <span>{{ $kin->email_kin }}</span>
+                                <span><a href="{{ route('edit-kin') }}">Update Kin</a></span>
+                                @endforeach
+
                                 </div>
                             </div>
                     </div>
