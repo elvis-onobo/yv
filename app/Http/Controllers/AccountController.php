@@ -40,9 +40,9 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'username' => 'required|nullable',
-            'acc_number' => 'required|nullable|digits:10',
-            'bank' => 'required|nullable'
+            'username' => 'nullable',
+            'acc_number' => 'nullable|digits:10',
+            'bank' => 'nullable'//digits:3
         ]);
 
         $values = [
@@ -61,5 +61,4 @@ class AccountController extends Controller
             return redirect('/account')->with('status','Please check and refill correctly');
         }
     }
-
 }
