@@ -6,13 +6,12 @@
         <div class="col-md-12">
             <div class="">
                 <!-- <div class="card-header">Dashboard</div> -->
-                <div class="col-md-8">
+                
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
                     </div>
                 @endif
-                </div>
 
                 
                     @foreach($users as $user)
@@ -21,7 +20,7 @@
                                 <img class="card-img-top" src="{{ asset('storage/'.$user->picture) }}" alt="{{ $user->name }} profile picture" />                        
                             </div>
                             <div class="col-md-3 card border-0 rounded-0 p-2 m-0">
-                                <h4>Profile Details</h4>
+                                <h5>Profile Details</h5>
                                 <span class="fa fa-user"> {{ $user->name }}</span>
                                 <span>{{ $user->dob }}</span>
                                 <span>{{ $user->gender }}</span>
@@ -33,7 +32,7 @@
                             <div class="col-md-3 card border-0 rounded-0 p-2 m-0">
                             @foreach($accounts as $account)
                                 <div>
-                                    <h4>Account Details</h4>
+                                    <h5>Account Details</h5>
                                     <span class="fa fa-user"> {{ $account->username }}</span>
                                     <span>{{ $account->acc_number }}</span>
                                     <span>{{ $account->bank }}</span>
@@ -42,7 +41,7 @@
                             @endforeach
                                 <hr />
                                 <div>
-                                <h4>Next of Kin</h4>
+                                <h5>Next of Kin</h5>
                                 @foreach($kins as $kin)                            
                                 <span>{{ $kin->name_kin }}</span>
                                 <span>{{ $kin->phone_kin }}</span>
