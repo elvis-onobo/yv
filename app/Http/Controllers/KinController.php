@@ -26,7 +26,9 @@ class KinController extends Controller
      */
     public function create()
     {
-        return view('user.kin');
+        $kin = Kin::find(auth()->user()->id)->first();
+        
+        return view('user.kin', compact('kin'));
     }
 
     /**
@@ -43,16 +45,19 @@ class KinController extends Controller
             'phone' => 'required|digits:11',
         ]);
 
-        $kin = new Kin;
-        $kin->user_id = auth()->user()->id;
-        $kin->name_kin = $request->name;
-        $kin->relationship = $request->relationship;
-        $kin->email_kin = $request->email;
-        $kin->phone_kin = $request->phone;
-        $kin->address_kin = $request->address;
+        $values = [
+            'name_kin' => $request->name,
+            'relationship' => $request->relationship,
+            'email_kin' => $request->email,
+            'phone_kin' => $request->phone,
+            'address_kin' => $request->address 
+        ];
 
-        // save the data and redirect accordingly
-        if($kin->save()){
+        // update the data and redirect accordingly
+        if(Kin::updateOrInsert(
+            ['user_id' => auth()->user()->id],
+            $values
+            )){
             return redirect('/home')->with('status', 'Next of updated!');
         }else{
             return redirect('/kin')->with('status','Please check and refill correctly');
