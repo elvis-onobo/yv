@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Http\File;
 use App\Profile;
 use App\User;
@@ -50,7 +49,7 @@ class ProfileController extends Controller
             'picture' => 'nullable'
         ]);
 
-        if($request->hasFile('picture')){
+        if($request->picture != null){
             // delete the previous picture and store new one
             $pixToDelete = Profile::find(auth()->user()->id)->picture;
             Storage::disk('public')->delete($pixToDelete);
@@ -63,7 +62,7 @@ class ProfileController extends Controller
             'address' => $request->address,
             'nationality' => $request->nationality,
             'gender' => $request->gender,
-            'picture' => $request->picture == null ? Profile::find(auth()->user()->id)->picture : $request->file('picture')->store('pictures', 'public')
+            'picture' => $request->picture != null ? $request->file('picture')->store('pictures', 'public') : Profile::find(auth()->user()->id)->picture 
         ];
 
         // save the data and redirect accordingly
