@@ -30,3 +30,8 @@ Route::post('/kin/store', 'KinController@store')->name('store-kin')->middleware(
 // password
 Route::get('/password', 'PasswordChangeController@password')->name('password')->middleware('auth');
 Route::post('/password/update', 'PasswordChangeController@update')->name('store-password')->middleware('auth');
+// admins
+
+// projects
+
+// investments
