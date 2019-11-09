@@ -15,6 +15,11 @@ class CreateInvestmentsTable extends Migration
     {
         Schema::create('investments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user_id');//should not be unique because one user can invest more than once
+            $table->string('project_id');
+            $table->string('amount_invested');
+            $table->string('duration');
+            $table->string('roi');
             $table->timestamps();
         });
     }
