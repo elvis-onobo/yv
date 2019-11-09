@@ -29,4 +29,11 @@ class ResetPasswordController extends Controller
      */
     protected $redirectTo = '/home';
 
+    /**
+     * use admin guard to login the admin
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
 }
