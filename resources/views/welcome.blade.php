@@ -68,14 +68,14 @@
               <div class="navigation">
                 <nav>
                   <ul class="nav topnav">
-                    <li class="active">
+                    <!-- <li class="active">
                       <a href="index.html">Home</a>
-                    </li>
+                    </li> -->
                     <li class="dropdown">
                       <a href="{{ route('login') }}">Login</a>
                     </li>
                     <li class="dropdown">
-                      <a href="#">Register</a>
+                      <a href="{{ route('register') }}">Register</a>
                     </li>
                     <!-- <li>
                       <a href="contact.html">Apply (Businesses)</a>

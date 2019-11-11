@@ -37,14 +37,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+
+        $this->middleware('guest:admin')->except('logout');
     }
 
     /**
-     * use admin guard to login the admin
+     * show admin login form
      * 
      */
-    protected function guard()
+    protected function adminLogin()
     {
-        return Auth::guard('admin');
+        return view('admin-login');
     }
 }
