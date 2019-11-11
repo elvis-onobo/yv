@@ -7,7 +7,14 @@ use Auth;
 
 class AdminController extends Controller
 {
-        /**
+    /**
+     * show home view
+     */
+    public function home(){
+        return view('admin.home');
+    }
+
+    /**
      * show admin login form
      * 
      */
@@ -16,6 +23,9 @@ class AdminController extends Controller
         return view('admin.admin-login');
     }
 
+    /**
+     * logs in the user
+     */
     public function loginTheAdmin(Request $request){
         $data = $request->validate([
             'email' => 'required|email',
@@ -32,7 +42,10 @@ class AdminController extends Controller
         return back()->withInput($request->only('email', 'remember'));
     }
 
-    public function home(){
-        return view('admin.home');
+    /**
+     * show the project creation form
+     */
+    public function project(){
+        return view('project');
     }
 }

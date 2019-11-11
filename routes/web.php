@@ -35,7 +35,11 @@ Route::post('/password/update', 'PasswordChangeController@update')->name('store-
 // admins
 Route::get('/admin/login', 'AdminController@adminLogin')->name('admin-login');
 Route::post('/login/admin', 'AdminController@loginTheAdmin')->name('login-admin');
-Route::get('/admin/home', 'AdminController@home')->name('home')->middleware('auth:admin');
+Route::middleware('auth:admin')->prefix('admin')->group(function(){
+    Route::get('/home', 'AdminController@home')->name('home');
+    Route::get('/projects', 'AdminController@home')->name('projects');
+});
+
 // projects
 
 // investments
