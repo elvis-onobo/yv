@@ -14,7 +14,8 @@ class ProjectsController extends Controller
      * show the project creation form
      */
     public function project(){
-        return view('admin.project');
+        $project = Project::find()->first();
+        return view('admin.project', compact('project'));
     }
 
     /**
