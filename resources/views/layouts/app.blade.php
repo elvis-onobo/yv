@@ -60,7 +60,7 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                        @elseif(Auth::check('admin'))
+                        @elseif(Auth::guard('admin')->check())
                         <li class="nav-item dropdown">
 
                             <li class="nav-item dropdown">
@@ -69,14 +69,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('/home') }}">
+                                <a class="dropdown-item" href="{{ url('/admin/home') }}">
                                     Dashboard
                                 </a>
                                 <a class="dropdown-item" href="{{ route('profile') }}">
-                                    Profile
+                                    Create Project
                                 </a>
                                 <a class="dropdown-item" href="{{ route('password') }}">
-                                    Change Password
+                                    Post Return
                                 </a>
                                 <a class="dropdown-item" href="{{ route('account') }}">
                                     Account Details
@@ -84,9 +84,6 @@
                                 <a class="dropdown-item" href="{{ route('kin') }}">
                                     Next of Kin
                                 </a>
-                                <!-- <a class="dropdown-item" href="">
-                                    Apply
-                                </a> -->
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
