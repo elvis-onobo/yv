@@ -46,6 +46,10 @@ class AdminController extends Controller
      * show the project creation form
      */
     public function project(){
-        return view('project');
+        return view('admin.project');
+    }
+
+    public function create_projects(Request $request){
+
     }
 }
