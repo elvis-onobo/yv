@@ -37,8 +37,8 @@ class HomeController extends Controller
                             'profiles.gender', 'profiles.picture')
                     ->where('users.id', auth()->user()->id)
                     ->get();
-        $accounts = Account::find(auth()->user()->id)->all();
-        $kins = Kin::find(auth()->user()->id)->all();
+        $accounts = DB::table('accounts')->where('user_id', auth()->user()->id)->get();
+        $kins = DB::table('kins')->where('user_id', auth()->user()->id)->get();
                     
         return view('home', compact('users', 'accounts', 'kins'));
     }

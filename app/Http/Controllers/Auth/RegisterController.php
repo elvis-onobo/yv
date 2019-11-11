@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\User;
 
+
 class RegisterController extends Controller
 {
     /*
@@ -71,11 +72,4 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * use admin guard to login the admin
-     */
-    protected function guard()
-    {
-        return Auth::guard('admin');
-    }
 }
