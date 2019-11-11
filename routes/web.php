@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Admin;
+use Auth;
 
 Route::get('/', function () {
     return view('welcome');

@@ -37,7 +37,7 @@
           <div class="row">
             <div class="span6">
               <ul class="topmenu">
-                <li><a href="#">Home</a> &#47;</li>
+                <!-- <li><a href="#">Home</a> &#47;</li> -->
                 <li><a href="#">Terms</a> &#47;</li>
                 <li><a href="#">Privacy policy</a></li>
               </ul>
@@ -60,7 +60,7 @@
         <div class="row nomargin">
           <div class="span4">
             <div class="logo">
-              <h1><a href="index.html"> Youvest</a></h1>
+              <h1><a href="{{ url('/') }}"> Youvest</a></h1>
             </div>
           </div>
           <div class="span8">
