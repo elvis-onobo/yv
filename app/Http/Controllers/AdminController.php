@@ -42,14 +42,5 @@ class AdminController extends Controller
         return back()->withInput($request->only('email', 'remember'));
     }
 
-    /**
-     * show the project creation form
-     */
-    public function project(){
-        return view('admin.project');
-    }
 
-    public function create_projects(Request $request){
-
-    }
 }
