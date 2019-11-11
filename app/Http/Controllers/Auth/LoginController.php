@@ -41,12 +41,28 @@ class LoginController extends Controller
         $this->middleware('guest:admin')->except('logout');
     }
 
-    /**
+        /**
      * show admin login form
      * 
      */
-    protected function adminLogin()
+    public function adminLogin()
     {
-        return view('admin-login');
+        return view('admin.admin-login');
+    }
+
+    public function loginTheAdmin(Request $request){
+        $data = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8'
+        ]);
+
+        if(Auth::guard('admin')->attempt([
+            'email' => $data['email'] ,
+            'password' => $data['password']
+        ], $request->get('remember'))){
+
+                return redirect()->intended('/admin/home');
+        }
+        return back()->withInput($request->only('email', 'remember'));
     }
 }
