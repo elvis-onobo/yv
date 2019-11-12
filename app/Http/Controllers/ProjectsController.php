@@ -14,7 +14,6 @@ class ProjectsController extends Controller
      * show the project creation form
      */
     public function project(){
-        @$project = Project::get();
         return view('admin.projects', compact('project'));
     }
 
@@ -39,22 +38,18 @@ class ProjectsController extends Controller
             $request->file('picture')->store('projects', 'public');
         }
 
-        $values = [
-            'created_by' => auth()->user()->id,
-            'project_picture' => $request->picture != null ? $request->file('picture')->store('pictures', 'public') : Project::find(auth()->user()->id)->project_picture ,
-            'title' => $request->title,
-            'returns' => $request->returns,
-            'duration' => $request->duration,
-            'location' => $request->location,
-            'minimum_investment' => $request->minimum,
-            'risk' => $request->risk
-        ];
+        $project = new Project;
+        $project->created_by = auth()->user()->id;
+        $project->project_picture = $request->picture != null ? $request->file('picture')->store('pictures', 'public') : Project::find(auth()->user()->id)->project_picture;
+        $project->title = $request->title;
+        $project->returns = $request->returns;
+        $project->duration = $request->duration;
+        $project->location = $request->location;
+        $project->minimum_investment = $request->minimum;
+        $project->risk = $request->risk;
 
         // save the data and redirect accordingly
-        if(Project::updateOrInsert(
-            ['created_by' => auth()->user()->id],
-            $values
-        )){
+        if($project->save()){
             return redirect('/admin/home')->with('status', 'Project Published!');
         }else{
             return back()->with('status','There is an error, please verify');
