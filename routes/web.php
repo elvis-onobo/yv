@@ -16,8 +16,8 @@ use App\Admin;
 
 
 Route::get('/', function () {
-    $projects = DB::table('projects')->latest('id')->limit(3);
-    return $projects;
+    $projects = DB::table('projects')->latest('id')->limit(3)->get();
+    
     return view('welcome', compact('projects'));
 });
 

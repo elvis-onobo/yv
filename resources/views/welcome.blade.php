@@ -223,9 +223,12 @@
                 </p>
               </div>
 
-                    @foreach($projects as $project)
+              @if(count($projects) > 0)
+                  @foreach($projects as $project)
+              <div class="span3">
+                <div class="pricing-box-plain">
                     <div class="card border-0 rounded-0 m-1 col-md-3 p-0">
-                        <img class="card-img-top" src="{{ asset('storage/'.$project->project_picture) }}" alt="{{ ucwords($project->title) }}" />
+                        <img class="card-img-top" src="{{ asset('storage/'.$project->project_picture) }}" alt="img" />
 
                         <div class="card-body">
                             <span class="card-title"><strong>{{ ucwords($project->title) }}</strong></span>
@@ -233,45 +236,19 @@
                             
                             <div class="row">
                                 <div class="col-md-6 col-sm-6"><span class="small">&#8358;{{ ucwords($project->minimum_investment) }} Per Slot</span></div>
-                                <div class="col-md-6 col-sm-6"><span class="small">Located In {{ ucwords($project->location) }}</span></div>
                             </div>
-                            
-                            <div class="row">
-                                <div class="col-md-7 col-sm-8"><span class="small">{{ ucwords($project->partner) }}</span></div>
-                                <div class="col-md-5 col-sm-4"><span class="small">{{ ucwords($project->risk) }} Risk</span></div>
-                            </div>
-
-                            
-
+                          
 
                             <p class="card-text"></p>
-                            <a href="#" class="btn btn-primary rounded-0">Purchase Slot</a>
-                            <a href="#" class="btn btn-primary rounded-0">Details</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary rounded-0">Details</a>
                         </div>
                     </div>
-                    @endforeach
-                    
-
-              <div class="span3">
-                <div class="pricing-box-plain">
-                  <div class="heading">
-                    <h4>TransOcean</h4>
-                    <span>Status: Sold Out</span>
-                  </div>
-                  <div class="desc">
-                    <ul>
-                      <li>5 Months</li>
-                      <li>ROI: 10%</li>
-                      <li>Unlimited disk spaces</li>
-                    </ul>
-                  </div>
-                  <div class="action">
-                    <a href="#" class="btn btn-inverse">Know More</a>
-                  </div>
                 </div>
               </div>
+                @endforeach
+              @endif
 
-              <div class="span3">
+              <!-- <div class="span3">
                 <div class="pricing-box-plain">
                   <div class="heading">
                     <h4>Medium</h4>
@@ -288,7 +265,7 @@
                     <a href="#" class="btn btn-inverse">Know More</a>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
             </div>
 
