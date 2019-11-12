@@ -97,10 +97,23 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="partner" class="col-md-4 col-form-label text-md-right">{{ __('Partner') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="partner" type="text" class="form-control" name="partner"  value="{{ old('partner') }}" placeholder="Risk Level">
+                            </div>
+                            @error('partner')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group row">
                             <label for="picture" class="col-md-4 col-form-label text-md-right">{{ __('Picture') }}</label>
 
                             <div class="col-md-6">
-                                <input id="picture" type="file" class="form-control" name="risk"  value="{{ old('picture') }}" accept="image/*">
+                                <input id="picture" type="file" class="form-control" name="picture"  value="{{ old('picture') }}" accept="image/*">
                             </div>
                             @error('picture')
                                 <span class="invalid-feedback" role="alert">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Project;
 use Auth;
 
 class AdminController extends Controller
@@ -11,7 +12,8 @@ class AdminController extends Controller
      * show home view
      */
     public function home(){
-        return view('admin.home');
+        $projects = Project::all()->paginate(6);
+        return view('admin.home', compact('projects'));
     }
 
     /**

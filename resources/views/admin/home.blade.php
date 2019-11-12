@@ -60,7 +60,9 @@
                                 <h4 class="card-title">John Doe</h4>
 
                                 <p class="card-text">Some text</p>
-                                <a href="#" class="btn btn-primary">See more</a>
+                                <a href="#" class="btn btn-primary">View</a>
+                                <a href="#" class="btn btn-primary">Edit</a>
+                                <a href="#" class="btn btn-primary">Delete</a>
                             </div>
                     </div>
 
