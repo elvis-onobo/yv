@@ -17,7 +17,7 @@ use App\Admin;
 
 Route::get('/', function () {
     $projects = DB::table('projects')->latest('id')->limit(3)->get();
-    
+
     return view('welcome', compact('projects'));
 });
 
@@ -27,13 +27,19 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 // profile
 Route::get('/profile', 'ProfileController@create')->name('profile')->middleware('auth');
 Route::post('/profile/store', 'ProfileController@store')->name('store-profile')->middleware('auth');
+Route::get('/profile/edit', 'ProfileController@edit')->name('edit-profile')->middleware('auth');
+Route::post('/profile/update', 'ProfileController@update')->name('update-profile')->middleware('auth');
 // account
 Route::get('/account', 'AccountController@create')->name('account')->middleware('auth');
 Route::post('/account/store', 'AccountController@store')->name('store-account')->middleware('auth');
+Route::get('/account/edit', 'AccountController@edit')->name('edit-account')->middleware('auth');
+Route::post('/account/update', 'AccountController@update')->name('update-account')->middleware('auth');
 // kin
 Route::get('/kin', 'KinController@create')->name('kin')->middleware('auth');
 Route::post('/kin/store', 'KinController@store')->name('store-kin')->middleware('auth');
-// password
+Route::get('/kin/edit', 'KinController@edit')->name('edit-kin')->middleware('auth');
+Route::post('/kin/update', 'KinController@update')->name('update-kn')->middleware('auth');
+// password update
 Route::get('/password', 'PasswordChangeController@password')->name('password')->middleware('auth');
 Route::post('/password/update', 'PasswordChangeController@update')->name('store-password')->middleware('auth');
 // admins
