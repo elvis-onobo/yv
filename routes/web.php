@@ -11,7 +11,7 @@
 |
 */
 use App\Admin;
-use Auth;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,7 +37,9 @@ Route::get('/admin/login', 'AdminController@adminLogin')->name('admin-login');
 Route::post('/login/admin', 'AdminController@loginTheAdmin')->name('login-admin');
 Route::middleware('auth:admin')->prefix('admin')->group(function(){
     Route::get('/home', 'AdminController@home')->name('home');
-    Route::get('/projects', 'AdminController@home')->name('projects');
+    Route::get('/projects', 'ProjectsController@project')->name('projects');
+    Route::post('/projects/store/{id?}', 'ProjectsController@project')->name('store-project');
+
 });
 
 // projects

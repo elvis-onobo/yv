@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Update Project') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('store-project') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('store-project', ['id' => ]) }}" enctype="multipart/form-data">
                         @csrf
 
                         @if (session('status'))

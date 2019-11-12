@@ -72,7 +72,7 @@
                                 <a class="dropdown-item" href="{{ url('/admin/home') }}">
                                     Dashboard
                                 </a>
-                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                <a class="dropdown-item" href="{{ route('/projects') }}">
                                     Create Project
                                 </a>
                                 <a class="dropdown-item" href="{{ route('password') }}">
