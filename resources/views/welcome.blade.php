@@ -223,10 +223,9 @@
                 </p>
               </div>
 
-              @if(count($projects) > 0)
                     @foreach($projects as $project)
                     <div class="card border-0 rounded-0 m-1 col-md-3 p-0">
-                        <img class="card-img-top" src="{{ asset('storage/'.$project->project_picture) }}" alt="img" />
+                        <img class="card-img-top" src="{{ asset('storage/'.$project->project_picture) }}" alt="{{ ucwords($project->title) }}" />
 
                         <div class="card-body">
                             <span class="card-title"><strong>{{ ucwords($project->title) }}</strong></span>
@@ -251,7 +250,7 @@
                         </div>
                     </div>
                     @endforeach
-                    @endif
+                    
 
               <div class="span3">
                 <div class="pricing-box-plain">
