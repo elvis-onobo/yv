@@ -43,8 +43,6 @@ class ProjectsController extends Controller
         $project->risk = $request->risk;
         $project->partner = $request->partner;
 
-        
-
         // save the data and redirect accordingly
         if($project->save()){
             $request->file('picture')->store('projects', 'public');

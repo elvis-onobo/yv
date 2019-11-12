@@ -41,41 +41,34 @@
 
 
                  <div class="row justify-content-center">                
-                                            
+                    @if(count($projects) > 0)
+                    @foreach($projects as $project)
                     <div class="card border-0 rounded-0 m-1 col-md-3 p-0">
-                            <img class="card-img-top" src="{{ URL::to('/') }}/img/dummies/works/1.jpg" alt="img" />
+                        <img class="card-img-top" src="{{ asset('storage/'.$project->project_picture) }}" alt="img" />
 
-                            <div class="card-body">
-                                <h4 class="card-title">John Doe</h4>
+                        <div class="card-body">
+                            <span class="card-title">{{ $project->title }}</span>
 
-                                <p class="card-text">Some text</p>
-                                <a href="#" class="btn btn-primary">See more</a>
+                            <div class="row">
+                                <div class="col-md-4"><span class="card-title">N{{ $project->minimum_investment }}</span></div>
+                                <div class="col-md-4"><span class="card-title">ROI {{ $project->returns }}%</span></div>
+                                <div class="col-md-4"><span class="card-title">{{ $project->duration }}</span></div>
                             </div>
-                    </div>
-
-                    <div class="card border-0 rounded-0 m-1 col-md-3 p-0">
-                            <img class="card-img-top" src="{{ URL::to('/') }}/img/dummies/works/1.jpg" alt="img" />
-
-                            <div class="card-body">
-                                <h4 class="card-title">John Doe</h4>
-
-                                <p class="card-text">Some text</p>
-                                <a href="#" class="btn btn-primary">View</a>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                                <a href="#" class="btn btn-primary">Delete</a>
+                            <div class="row">
+                                <div class="col-md-8"><span class="card-title">{{ $project->location }}</span></div>
+                                <div class="col-md-4"><span class="card-title">{{ $project->risk }}</span></div>
                             </div>
+                            <span class="card-title">{{ $project->partner }}</span>
+
+
+                            <p class="card-text"></p>
+                            <a href="#" class="btn btn-primary">View</a>
+                            <a href="#" class="btn btn-primary">Edit</a>
+                            <a href="#" class="btn btn-primary">Sold Out</a>
+                        </div>
                     </div>
-
-                    <div class="card border-0 rounded-0 m-1 col-md-3 p-0">
-                            <img class="card-img-top" src="{{ URL::to('/') }}/img/dummies/works/1.jpg" alt="img" />
-
-                            <div class="card-body">
-                                <h4 class="card-title">John Doe</h4>
-
-                                <p class="card-text">Some text</p>
-                                <a href="#" class="btn btn-primary">See more</a>
-                            </div>
-                    </div>
+                    @endforeach
+                    @endif
 
                 </div> 
 
