@@ -61,7 +61,7 @@
                     
                     <div class="col-md-3 card border-0 rounded-0 m-1 p-2 bg-danger text-white">
                         <div class="col-md-12">
-                            <div class="col-md-4"><i class="ico icon-user icon-5x"></i></div>
+                            <div class="col-md-4"><i class="icon-circled icon-bglight icon-facebook"></i></div>
                             <div class="col-md-8">
                                 <p>Current Investment</p>
                                 12345
@@ -95,7 +95,7 @@
                             <div class="small">Returns {{ ucwords($project->returns) }}% in {{ $project->duration }} months</div>
                             
                             <div class="row">
-                                <div class="col-md-6 col-sm-6"><span class="small">N{{ ucwords($project->minimum_investment) }} Per Unit</span></div>
+                                <div class="col-md-6 col-sm-6"><span class="small">&#8358;{{ ucwords($project->minimum_investment) }} Per Slot</span></div>
                                 <div class="col-md-6 col-sm-6"><span class="small">Located In {{ ucwords($project->location) }}</span></div>
                             </div>
                             
@@ -109,6 +109,7 @@
 
                             <p class="card-text"></p>
                             <a href="#" class="btn btn-primary rounded-0">Purchase Slot</a>
+                            <a href="#" class="btn btn-primary rounded-0">Details</a>
                         </div>
                     </div>
                     @endforeach

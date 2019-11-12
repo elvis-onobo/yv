@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <title>YouVest | Invest In Young Growing Startups</title>
+  <title>YouVest | Numerous Investment Opportunities For You To Make Your Money Earn More</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Your page description here" />
+  <meta name="description" content="Earn returns on slots purchased " />
   <meta name="author" content="" />
 
   <!-- css -->
@@ -97,7 +97,7 @@
         <h2>Welcome to Youvest!</h2>
         <h3>Grow Your Money Funding Growing Businesses</h3>
         <div>
-          <a href="#content" class="btn-get-started scrollto">Get Started</a>
+          <a href="{{ route('register') }}" class="btn-get-started scrollto">Get Started</a>
         </div>
       </div>
     </section>
@@ -123,7 +123,7 @@
                         quickly with very limited data
                         requirements.
                     </p>
-                    <a href="#">Start</a>
+                    <a href="{{ route('register') }}">Start Now</a>
                   </div>
                 </div>
               </div>
@@ -135,12 +135,12 @@
                     <i class="ico icon-money icon-5x"></i>
                   </div>
                   <div class="text">
-                    <h4><strong>Fund Project</strong></h4>
+                    <h4><strong>Purchase Slot</strong></h4>
                     <p>
-                        Little drops form the sea; start investing and earning
+                        Little drops form the sea; purchase slots and earn
                          with as little as N1,000
                     </p>
-                    <a href="#">Learn More</a>
+                    <a href="{{ route('register') }}">Start Now</a>
                   </div>
                 </div>
               </div>
@@ -153,10 +153,10 @@
                   <div class="text">
                     <h4><strong>Get Returns</strong></h4>
                     <p>
-                        Enjoy consistent returns on your Investment
+                        Enjoy consistent returns on your purchases
                          and start growing your money bag
                     </p>
-                    <a href="#">Learn More</a>
+                    <a href="{{ route('register') }}">Start Now</a>
                   </div>
                 </div>
               </div>
@@ -171,12 +171,12 @@
               <div class="row">
                 <div class="span8">
                   <div class="cta-text">
-                    <h2>Earn Up To 15% Returns On Investment</h2>
+                    <h2>Earn Up To 15% Returns</h2>
                   </div>
                 </div>
                 <div class="span4">
                   <div class="cta-btn">
-                    <a href="#" class="btn btn-color btn-success">Start Funding <i class="icon-caret-right"></i></a>
+                    <a href="{{ route('login') }}" class="btn btn-color btn-success">Get A Slot <i class="icon-caret-right"></i></a>
                   </div>
                 </div>
 

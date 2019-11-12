@@ -51,7 +51,7 @@
                             <div class="small">Returns {{ ucwords($project->returns) }}% in {{ $project->duration }} months</div>
                             
                             <div class="row">
-                                <div class="col-md-6 col-sm-6"><span class="small">N{{ ucwords($project->minimum_investment) }} Per Unit</span></div>
+                                <div class="col-md-6 col-sm-6"><span class="small">&#8358;{{ ucwords($project->minimum_investment) }} Per Unit</span></div>
                                 <div class="col-md-6 col-sm-6"><span class="small">Located In {{ ucwords($project->location) }}</span></div>
                             </div>
                             
