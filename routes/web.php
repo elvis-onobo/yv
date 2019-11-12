@@ -37,11 +37,9 @@ Route::get('/admin/login', 'AdminController@adminLogin')->name('admin-login');
 Route::post('/login/admin', 'AdminController@loginTheAdmin')->name('login-admin');
 Route::middleware('auth:admin')->prefix('admin')->group(function(){
     Route::get('/home', 'AdminController@home')->name('home');
-    Route::get('/projects', 'ProjectsController@project')->name('projects');
-    Route::post('/projects/store/{id?}', 'ProjectsController@project')->name('store-project');
-
 });
 
 // projects
-
+Route::get('/project/create', 'ProjectsController@create')->name('project')->middleware('auth:admin');
+Route::post('/project/store', 'ProjectsController@store')->name('store-project')->middleware('auth:admin');
 // investments

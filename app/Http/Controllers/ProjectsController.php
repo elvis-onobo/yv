@@ -13,14 +13,14 @@ class ProjectsController extends Controller
     /**
      * show the project creation form
      */
-    public function project(){
+    public function create(){
         return view('admin.projects', compact('project'));
     }
 
     /**
      * insert new project to db or update if exists
      */
-    public function create_projects(Request $request){
+    public function store(Request $request){
         $data = $request->validate([
             'project_picture' => 'nullable',
             'title' => 'required',
