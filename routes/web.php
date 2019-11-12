@@ -10,11 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\DB;
+use App\Project;
 use App\Admin;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    $projects = DB::table('projects')->limit(3)->latest();
+    return view('welcome', compact('projects'));
 });
 
 Auth::routes(['verify' => true]);
