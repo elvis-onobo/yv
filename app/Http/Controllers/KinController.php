@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\Kin;
@@ -25,25 +26,30 @@ class KinController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required',
-            'relationship' => 'required',
-            'phone' => 'required|digits:11',
-        ]);
+        if(!Kin::where('user_id', auth()->user()->id)->exists()){
 
-        $kin = new Kin;
-        $kin->user_id = auth()->user()->id;
-        $kin->name_kin = $request->name;
-        $kin->relationship = $request->relationship;
-        $kin->email_kin = $request->email;
-        $kin->phone_kin = $request->phone;
-        $kin->address_kin = $request->address;
+            $data = $request->validate([
+                'name' => 'required',
+                'relationship' => 'required',
+                'phone' => 'required|digits:11',
+            ]);
 
-        // update the data and redirect accordingly
-        if($kin->save()){
-            return redirect('/home')->with('status', 'Next of updated!');
+            $kin = new Kin;
+            $kin->user_id = auth()->user()->id;
+            $kin->name_kin = $request->name;
+            $kin->relationship = $request->relationship;
+            $kin->email_kin = $request->email;
+            $kin->phone_kin = $request->phone;
+            $kin->address_kin = $request->address;
+
+            // update the data and redirect accordingly
+            if($kin->save()){
+                return redirect('/home')->with('status', 'Next of updated!');
+            }else{
+                return redirect('/kin')->with('status','Please check and refill correctly');
+            }
         }else{
-            return redirect('/kin')->with('status','Please check and refill correctly');
+            return back()->with('status', 'You have a kin already, edit instead.');
         }
     
     }
@@ -56,7 +62,7 @@ class KinController extends Controller
     {
         $kin = Kin::find(auth()->user()->id)->first();
 
-        return view('user.kin', compact('kin'));
+        return view('user.edit-kin', compact('kin'));
     }
 
     public function update(Request $request){

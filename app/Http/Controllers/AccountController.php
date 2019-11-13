@@ -28,22 +28,26 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'username' => 'nullable',
-            'acc_number' => 'nullable|digits:10',
-            'bank' => 'nullable'//digits:3
-        ]);
+        if(!Account::where('user_id', auth()->user()->id)->exists()){
+            $data = $request->validate([
+                'username' => 'nullable',
+                'acc_number' => 'nullable|digits:10',
+                'bank' => 'nullable'//digits:3
+            ]);
 
-        $account = new Account;
-        $account->user_id = auth()->user()->id;
-        $account->username = $request->username;
-        $account->acc_number = $request->acc_number;
-        $account->bank = $request->bank;
-        // save the data and redirect accordingly
-        if($account->save()){
-            return redirect('/home')->with('status', 'Account updated!');
+            $account = new Account;
+            $account->user_id = auth()->user()->id;
+            $account->username = $request->username;
+            $account->acc_number = $request->acc_number;
+            $account->bank = $request->bank;
+            // save the data and redirect accordingly
+            if($account->save()){
+                return redirect('/home')->with('status', 'Account updated!');
+            }else{
+                return redirect('/account')->with('status','Please check and refill correctly');
+            }
         }else{
-            return redirect('/account')->with('status','Please check and refill correctly');
+            return back()->with('status', 'You already have an account, edit it instead.');
         }
     }
 
