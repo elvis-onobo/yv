@@ -19,7 +19,7 @@
                             <div class="col-md-3 card border-0 rounded-0 p-0 m-0">
                                 <img class="card-img-top" src="{{ asset('storage/'.$user->picture) }}" alt="{{ $user->name }} profile picture" />                        
                             </div>
-                            <div class="col-md-3 card border-0 rounded-0 p-2 m-0 small">
+                            <div class="col-md-2 card border-0 rounded-0 p-2 m-0 small">
                                 <h5>Profile Details</h5>
                                 <span class="fa fa-user"> {{ $user->name }}</span>
                                 <span>{{ $user->dob }}</span>
@@ -29,28 +29,26 @@
                                 <span>{{ $user->nationality }}</span>
                                 <span><a href="{{ route('edit-profile') }}">Update Profile</a></span>
                             </div>
-                            <div class="col-md-3 card border-0 rounded-0 p-2 m-0 small">
+                            <div class="col-md-2 card border-0 rounded-0 p-2 m-0 small">
                             @foreach($accounts as $account)
-                                <div>
-                                    <h5>Account Details</h5>
-                                    <span class=""> {{ $account->username }},</span>
-                                    <span>{{ $account->acc_number }},</span>
-                                    <span>{{ $account->bank }}</span>
-                                    <span><a href="{{ route('edit-account') }}">Update Account</a></span>
-                                </div>
+                                <h5>Account Details</h5>
+                                <span> {{ $account->username }}</span>
+                                <span>{{ $account->acc_number }}</span>
+                                <span>{{ $account->bank }}</span>
+                                <span><a href="{{ route('edit-account') }}">Update Account</a></span>
                             @endforeach
-                                <hr />
-                                <div>
-                                    <h5>Next of Kin</h5>
-                                    @foreach($kins as $kin)                            
-                                    <span>{{ $kin->name_kin }}</span>
-                                    <span>{{ $kin->phone_kin }}</span>
-                                    <span>{{ $kin->relationship }}</span>
-                                    <span>{{ $kin->address_kin }}</span>
-                                    <span>{{ $kin->email_kin }}</span>
-                                    <span><a href="{{ route('edit-kin') }}">Update Kin</a></span>
-                                    @endforeach
-                                </div>
+                            </div>
+
+                            <div class="col-md-2 card border-0 rounded-0 p-2 m-0 small">
+                                <h5>Next of Kin</h5>
+                                @foreach($kins as $kin)                            
+                                <span>{{ $kin->name_kin }}</span>
+                                <span>{{ $kin->phone_kin }}</span>
+                                <span>{{ $kin->relationship }}</span>
+                                <span>{{ $kin->address_kin }}</span>
+                                <span>{{ $kin->email_kin }}</span>
+                                <span><a href="{{ route('edit-kin') }}">Update Kin</a></span>
+                                @endforeach
                             </div>
                     </div>
                     @endforeach
@@ -104,7 +102,7 @@
 
                             <p class="card-text"></p>
                             <a href="#" class="btn btn-primary rounded-0">Purchase Slot</a>
-                            <a href="#" class="btn btn-primary rounded-0">Details</a>
+                            <a href="{{ route('details', ['id' => $project->id ]) }}" class="btn btn-primary rounded-0">Details</a>
                         </div>
                     </div>
                     @endforeach

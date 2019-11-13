@@ -24,6 +24,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/details/{id}', 'HomeController@details')->name('details')->middleware('auth');
 // profile
 Route::get('/profile', 'ProfileController@create')->name('profile')->middleware('auth');
 Route::post('/profile/store', 'ProfileController@store')->name('store-profile')->middleware('auth');

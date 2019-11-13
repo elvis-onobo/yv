@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Account;
+use App\Project;
 use App\Profile;
 use App\User;
 use App\Kin;
@@ -42,5 +43,11 @@ class HomeController extends Controller
         $projects = DB::table('projects')->paginate(6);
 
         return view('home', compact('users', 'accounts', 'kins', 'projects'));
+    }
+
+    public function details($id){
+        $details = Project::where('id', $id)->first();
+
+        return view('user.details', compact('details'));
     }
 }

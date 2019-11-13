@@ -24,6 +24,7 @@ class CreateProjectsTable extends Migration
             $table->string('minimum_investment');
             $table->string('risk'); //low, medium and high
             $table->string('partner'); //company we are running the project with
+            $table->text('details');       
             $table->timestamps();
         });
     }

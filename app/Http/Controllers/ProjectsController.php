@@ -29,7 +29,8 @@ class ProjectsController extends Controller
             'location' => 'required',
             'minimum' => 'required',
             'risk' => 'required',
-            'partner' => 'required'
+            'partner' => 'required',
+            'details' => 'required'
         ]);
 
         $project = new Project;
@@ -42,6 +43,7 @@ class ProjectsController extends Controller
         $project->minimum_investment = $request->minimum;
         $project->risk = $request->risk;
         $project->partner = $request->partner;
+        $project->details = $request->details;
 
         // save the data and redirect accordingly
         if($project->save()){
@@ -83,7 +85,8 @@ class ProjectsController extends Controller
         $project->location = $request->location;
         $project->minimum_investment = $request->minimum;
         $project->risk = $request->risk;
-
+        $project->details = $request->details;
+        
         // save the data and redirect accordingly
         if($project->save()){
             return redirect('/admin/home')->with('status', 'Project Published!');

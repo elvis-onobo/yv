@@ -110,6 +110,19 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="details" class="col-md-4 col-form-label text-md-right">{{ __('Details') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="details" type="text" class="form-control" name="details"  value="{{ old('details') }}" placeholder="Everything the person should know about the project" rows="5"></textarea>
+                            </div>
+                            @error('details')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group row">
                             <label for="picture" class="col-md-4 col-form-label text-md-right">{{ __('Picture') }}</label>
 
                             <div class="col-md-6">
