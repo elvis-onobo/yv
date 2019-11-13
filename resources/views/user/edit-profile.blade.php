@@ -21,7 +21,7 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone"  value="{{ $profile->phone }}"  autocomplete="phone">
+                                <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror rounded-0" name="phone"  value="{{ $profile->phone }}"  autocomplete="phone">
 
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
@@ -35,7 +35,7 @@
                             <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
 
                             <div class="col-md-6">
-                                <input id="dob" type="date" class="form-control" name="dob"  value="{{ $profile->dob }}" >
+                                <input id="dob" type="date" class="form-control @error('dob') is-invalid @enderror rounded-0" name="dob"  value="{{ $profile->dob }}" >
                             </div>
                             @error('dob')
                                 <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address"  value="{{ $profile->address }}" >
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror rounded-0" name="address"  value="{{ $profile->address }}" >
                             </div>
                             @error('address')
                                 <span class="invalid-feedback" role="alert">
@@ -61,7 +61,7 @@
                             <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Nationality') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nationality" type="text" class="form-control" name="nationality"  value="{{ $profile->nationality }}">
+                                <input id="nationality" type="text" class="form-control @error('nationality') is-invalid @enderror rounded-0" name="nationality"  value="{{ $profile->nationality }}">
                             </div>
                             @error('nationality')
                                 <span class="invalid-feedback" role="alert">
@@ -74,7 +74,7 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
-                                <input id="gender" type="text" class="form-control" name="gender"  value="{{ $profile->gender }}" placeholder="must be male or female">
+                                <input id="gender" type="text" class="form-control @error('gender') is-invalid @enderror rounded-0" name="gender"  value="{{ $profile->gender }}" placeholder="must be male or female">
                             </div>
                             @error('gender')
                                 <span class="invalid-feedback" role="alert">
@@ -87,7 +87,7 @@
                             <label for="picture" class="col-md-4 col-form-label text-md-right">{{ __('Picture') }}</label>
 
                             <div class="col-md-6">
-                                <input id="picture" type="file" class="form-control" name="picture"  value="{{ $profile->picture }}" accept="image/*">
+                                <input id="picture" type="file" class="form-control @error('picture') is-invalid @enderror rounded-0" name="picture"  value="{{ $profile->picture }}" accept="image/*">
                             </div>
                             @error('picture')
                                 <span class="invalid-feedback" role="alert">
@@ -98,7 +98,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary rounded-0">
                                     {{ __('Update Profile') }}
                                 </button>
                             </div>

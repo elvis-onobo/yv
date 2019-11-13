@@ -59,7 +59,7 @@ class KinController extends Controller
         return view('user.kin', compact('kin'));
     }
 
-    public function update(){
+    public function update(Request $request){
         $data = $request->validate([
             'name' => 'required',
             'relationship' => 'required',
