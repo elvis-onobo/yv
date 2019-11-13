@@ -38,7 +38,7 @@ Route::post('/account/update', 'AccountController@update')->name('update-account
 Route::get('/kin', 'KinController@create')->name('kin')->middleware('auth');
 Route::post('/kin/store', 'KinController@store')->name('store-kin')->middleware('auth');
 Route::get('/kin/edit', 'KinController@edit')->name('edit-kin')->middleware('auth');
-Route::post('/kin/update', 'KinController@update')->name('update-kn')->middleware('auth');
+Route::post('/kin/update', 'KinController@update')->name('update-kin')->middleware('auth');
 // password update
 Route::get('/password', 'PasswordChangeController@password')->name('password')->middleware('auth');
 Route::post('/password/update', 'PasswordChangeController@update')->name('store-password')->middleware('auth');

@@ -35,6 +35,7 @@ class AccountController extends Controller
         ]);
 
         $account = new Account;
+        $account->user_id = auth()->user()->id;
         $account->username = $request->username;
         $account->acc_number = $request->acc_number;
         $account->bank = $request->bank;
