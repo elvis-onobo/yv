@@ -18,7 +18,7 @@
                 
                     <div class="row justify-content-center p-2">
                         <div class="col-md-3 card border-0 rounded-0 p-0 m-0">
-                            {!! $project->details !!}
+                            {!! nl2br(e($project->details)) !!}
                         </div>
                     </div>
 

@@ -52,8 +52,8 @@ class HomeController extends Controller
     }
 
     public function purchase($id){
-        $details = Project::where('id', $id)->first();
+        $projects = DB::table('projects')->where('id', $id)->get();
 
-        return view('user.purchase', compact('details'));
+        return view('user.purchase', compact('projects'));
     }
 }
