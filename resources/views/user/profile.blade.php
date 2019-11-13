@@ -21,7 +21,7 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone"  value="{{ old('phone', $profile->phone) }}"  autocomplete="phone">
+                                <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone"  value="{{ old('phone') }}"  autocomplete="phone">
 
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
@@ -35,7 +35,7 @@
                             <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
 
                             <div class="col-md-6">
-                                <input id="dob" type="date" class="form-control" name="dob"  value="{{ old('dob', $profile->dob) }}" >
+                                <input id="dob" type="date" class="form-control" name="dob"  value="{{ old('dob') }}" >
                             </div>
                             @error('dob')
                                 <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address"  value="{{ old('address', $profile->address) }}" >
+                                <input id="address" type="text" class="form-control" name="address"  value="{{ old('address') }}" >
                             </div>
                             @error('address')
                                 <span class="invalid-feedback" role="alert">
@@ -61,7 +61,7 @@
                             <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Nationality') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nationality" type="text" class="form-control" name="nationality"  value="{{ old('nationality', $profile->nationality) }}">
+                                <input id="nationality" type="text" class="form-control" name="nationality"  value="{{ old('nationality') }}">
                             </div>
                             @error('nationality')
                                 <span class="invalid-feedback" role="alert">
@@ -74,7 +74,7 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
-                                <input id="gender" type="text" class="form-control" name="gender"  value="{{ old('gender', $profile->gender) }}" placeholder="must be male or female">
+                                <input id="gender" type="text" class="form-control" name="gender"  value="{{ old('gender') }}" placeholder="must be male or female">
                             </div>
                             @error('gender')
                                 <span class="invalid-feedback" role="alert">
@@ -87,7 +87,7 @@
                             <label for="picture" class="col-md-4 col-form-label text-md-right">{{ __('Picture') }}</label>
 
                             <div class="col-md-6">
-                                <input id="picture" type="file" class="form-control" name="picture"  value="{{ old('picture', $profile->picture) }}" accept="image/*">
+                                <input id="picture" type="file" class="form-control" name="picture"  value="{{ old('picture') }}" accept="image/*">
                             </div>
                             @error('picture')
                                 <span class="invalid-feedback" role="alert">

@@ -27,7 +27,7 @@
                                 <span>{{ $user->phone }}</span>
                                 <span>{{ $user->address }}</span>
                                 <span>{{ $user->nationality }}</span>
-                                <span><a href="{{ route('profile') }}">Update</a></span>
+                                <span><a href="{{ route('edit-profile', ['id' => $user->id]) }}">Update Profile</a></span>
                             </div>
                             <div class="col-md-3 card border-0 rounded-0 p-2 m-0">
                             @foreach($accounts as $account)
@@ -36,7 +36,7 @@
                                     <span class="fa fa-user"> {{ $account->username }}</span>
                                     <span>{{ $account->acc_number }}</span>
                                     <span>{{ $account->bank }}</span>
-                                    <span><a href="{{ route('account') }}">Update</a></span>
+                                    <span><a href="{{ route('edit-account', ['id' => $account->id ]) }}">Update Account</a></span>
                                 </div>
                             @endforeach
                                 <hr />
@@ -48,7 +48,7 @@
                                 <span>{{ $kin->relationship }}</span>
                                 <span>{{ $kin->address_kin }}</span>
                                 <span>{{ $kin->email_kin }}</span>
-                                <span><a href="{{ route('kin') }}">Update</a></span>
+                                <span><a href="{{ route('edit-kin', ['id' => $kin->id ]) }}">Update Kin</a></span>
                                 @endforeach
 
                                 </div>
@@ -83,8 +83,7 @@
                 </div>
 
 
-                 <div class="row justify-content-center">                
-                                            
+                 <div class="row justify-content-center">                                                            
                  @if(count($projects) > 0)
                     @foreach($projects as $project)
                     <div class="card border-0 rounded-0 m-1 col-md-3 p-0">
@@ -103,9 +102,6 @@
                                 <div class="col-md-7 col-sm-8"><span class="small">{{ ucwords($project->partner) }}</span></div>
                                 <div class="col-md-5 col-sm-4"><span class="small">{{ ucwords($project->risk) }} Risk</span></div>
                             </div>
-
-                            
-
 
                             <p class="card-text"></p>
                             <a href="#" class="btn btn-primary rounded-0">Purchase Slot</a>

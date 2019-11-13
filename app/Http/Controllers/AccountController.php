@@ -26,8 +26,6 @@ class AccountController extends Controller
      */
     public function create()
     {
-        $account = Account::find(auth()->user()->id)->first();
-
         return view('user.account', compact('account'));
     }
 
@@ -45,17 +43,47 @@ class AccountController extends Controller
             'bank' => 'nullable'//digits:3
         ]);
 
-        $values = [
-            'username' => $request->username,
-            'acc_number' => $request->acc_number,
-            'bank' => $request->bank
-        ];
-
+        $account = new Account;
+        $account->username = $request->username;
+        $account->acc_number = $request->acc_number;
+        $account->bank = $request->bank;
         // save the data and redirect accordingly
-        if(Account::updateOrInsert(
-            ['user_id'=>auth()->user()->id],
-            $values
-            )){
+        if($account->save()){
+            return redirect('/home')->with('status', 'Account updated!');
+        }else{
+            return redirect('/account')->with('status','Please check and refill correctly');
+        }
+    }
+
+/**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit()
+    {
+        $account = Account::find(auth()->user()->id)->first();
+
+        return view('user.account', compact('account'));
+    }
+
+    /**
+     * update account
+     */
+    public function update(Request $request, $id){
+        $data = $request->validate([
+            'username' => 'nullable',
+            'acc_number' => 'nullable|digits:10',
+            'bank' => 'nullable'//digits:3
+        ]);
+
+        $account = new Account;
+        $account->username = $request->username;
+        $account->acc_number = $request->acc_number;
+        $account->bank = $request->bank;
+        
+        // save the data and redirect accordingly
+        if($account->update()){
             return redirect('/home')->with('status', 'Account updated!');
         }else{
             return redirect('/account')->with('status','Please check and refill correctly');

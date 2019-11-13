@@ -42,12 +42,67 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+        if(!Profile::where('user_id', auth()->user()->id)->exists()){
+            $data = $request->validate([
+                'phone' => 'nullable|digits:11',
+                'dob' => 'nullable|date',
+                'gender' => ['nullable', Rule::in(['male','female'])],
+                'picture' => 'nullable'
+            ]);
+
+            $profile = new Profile;
+            $profile->user_id = auth()->user()->id;
+            $profile->phone = $request->phone;
+            $profile->dob = $request->dob; 
+            $profile->address = $request->address;
+            $profile->nationality = $request->nationality;
+            $profile->gender = $request->gender;
+            $profile->picture = $request->file('picture')->store('pictures', 'public');  
+
+
+            // save the data and redirect accordingly
+            if($profile->save()){
+                $request->file('picture')->store('pictures', 'public');
+                return redirect('/home')->with('status', 'Profile updated!');
+            }else{
+                return redirect('/profile')->with('status','There is an error, please check and correct it');
+            }                
+        }else{
+            return back()->with('status', 'You have a profile already, edit it instead');
+        }
+    }
+
+    /**
+     * show profile edit form
+     */
+    public function edit($id)
+    {
+        $profile = Profile::where('id', $id);
+
+        return view('user.edit-profile', compact('profile'));
+    }
+
+    /**
+     * update the profile
+     */
+    public function update()
+    {
         $data = $request->validate([
             'phone' => 'nullable|digits:11',
             'dob' => 'nullable|date',
             'gender' => ['nullable', Rule::in(['male','female'])],
             'picture' => 'nullable'
         ]);
+
+        $profile = new Profile;
+        $profile->user_id = auth()->user()->id;
+        $profile->phone = $request->phone;
+        $profile->dob = $request->dob; 
+        $profile->address = $request->address;
+        $profile->nationality = $request->nationality;
+        $profile->gender = $request->gender;
+        $profile->picture = $request->picture != null ? $request->file('picture')->store('pictures', 'public') : Profile::find(auth()->user()->id)->picture ;  
+
 
         if($request->picture != null){
             // delete the previous picture and store new one
@@ -56,20 +111,8 @@ class ProfileController extends Controller
             $request->file('picture')->store('pictures', 'public');
         }
 
-        $values = [
-            'phone' => $request->phone,
-            'dob' => $request->dob,
-            'address' => $request->address,
-            'nationality' => $request->nationality,
-            'gender' => $request->gender,
-            'picture' => $request->picture != null ? $request->file('picture')->store('pictures', 'public') : Profile::find(auth()->user()->id)->picture 
-        ];
-
         // save the data and redirect accordingly
-        if(Profile::updateOrInsert(
-            ['user_id' => auth()->user()->id],
-            $values
-        )){
+        if($profile->update()->where('id', $id)){
             return redirect('/home')->with('status', 'Profile updated!');
         }else{
             return redirect('/profile')->with('status','There is an error, please check and correct it');
