@@ -9,15 +9,6 @@ use Auth;
 
 class AccountController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -77,13 +68,14 @@ class AccountController extends Controller
             'bank' => 'nullable'//digits:3
         ]);
 
-        $account = new Account;
-        $account->username = $request->username;
-        $account->acc_number = $request->acc_number;
-        $account->bank = $request->bank;
-        
+        $values = [
+            'username' => $request->username,
+            'acc_number' => $request->acc_number,
+            'bank' => $request->bank
+        ];
+
         // save the data and redirect accordingly
-        if($account->update()){
+        if(DB::table('accounts')->where('user_id', auth()->user()->id)->update()){
             return redirect('/home')->with('status', 'Account updated!');
         }else{
             return redirect('/account')->with('status','Please check and refill correctly');

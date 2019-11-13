@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
@@ -12,15 +13,6 @@ use Auth;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,9 +21,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        $profile = Profile::where('user_id', auth()->user()->id)->first();
-
-        return view('user.profile', compact('profile'));
+        return view('user.profile');
     }
 
     /**
@@ -75,17 +65,17 @@ class ProfileController extends Controller
     /**
      * show profile edit form
      */
-    public function edit($id)
+    public function edit()
     {
-        $profile = Profile::where('id', $id);
-
+        $profile = Profile::where('user_id', auth()->user()->id)->first();
+        
         return view('user.edit-profile', compact('profile'));
     }
 
     /**
      * update the profile
      */
-    public function update()
+    public function update(Request $request)
     {
         $data = $request->validate([
             'phone' => 'nullable|digits:11',
@@ -94,15 +84,15 @@ class ProfileController extends Controller
             'picture' => 'nullable'
         ]);
 
-        $profile = new Profile;
-        $profile->user_id = auth()->user()->id;
-        $profile->phone = $request->phone;
-        $profile->dob = $request->dob; 
-        $profile->address = $request->address;
-        $profile->nationality = $request->nationality;
-        $profile->gender = $request->gender;
-        $profile->picture = $request->picture != null ? $request->file('picture')->store('pictures', 'public') : Profile::find(auth()->user()->id)->picture ;  
-
+        $values = [
+            'user_id' => auth()->user()->id,
+            'phone' => $request->phone,
+            'dob' => $request->dob,
+            'address' => $request->address,
+            'nationality' => $request->nationality,
+            'gender' => $request->gender,
+            'picture' => $request->picture != null ? $request->file('picture')->store('pictures', 'public') : Profile::find(auth()->user()->id)->picture
+        ];
 
         if($request->picture != null){
             // delete the previous picture and store new one
@@ -112,7 +102,7 @@ class ProfileController extends Controller
         }
 
         // save the data and redirect accordingly
-        if($profile->update()->where('id', $id)){
+        if(DB::table('profiles')->where('user_id', auth()->user()->id)->update($values)){
             return redirect('/home')->with('status', 'Profile updated!');
         }else{
             return redirect('/profile')->with('status','There is an error, please check and correct it');

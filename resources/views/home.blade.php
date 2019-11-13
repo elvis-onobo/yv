@@ -27,7 +27,7 @@
                                 <span>{{ $user->phone }}</span>
                                 <span>{{ $user->address }}</span>
                                 <span>{{ $user->nationality }}</span>
-                                <span><a href="{{ route('edit-profile', ['id' => $user->id]) }}">Update Profile</a></span>
+                                <span><a href="{{ route('edit-profile') }}">Update Profile</a></span>
                             </div>
                             <div class="col-md-3 card border-0 rounded-0 p-2 m-0">
                             @foreach($accounts as $account)

@@ -27,12 +27,12 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 // profile
 Route::get('/profile', 'ProfileController@create')->name('profile')->middleware('auth');
 Route::post('/profile/store', 'ProfileController@store')->name('store-profile')->middleware('auth');
-Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('edit-profile')->middleware('auth');
+Route::get('/profile/edit/', 'ProfileController@edit')->name('edit-profile')->middleware('auth');
 Route::post('/profile/update', 'ProfileController@update')->name('update-profile')->middleware('auth');
 // account
 Route::get('/account', 'AccountController@create')->name('account')->middleware('auth');
 Route::post('/account/store', 'AccountController@store')->name('store-account')->middleware('auth');
-Route::get('/account/edit/{id}', 'AccountController@edit')->name('edit-account')->middleware('auth');
+Route::get('/account/edit/', 'AccountController@edit')->name('edit-account')->middleware('auth');
 Route::post('/account/update', 'AccountController@update')->name('update-account')->middleware('auth');
 // kin
 Route::get('/kin', 'KinController@create')->name('kin')->middleware('auth');
