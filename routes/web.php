@@ -25,6 +25,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/details/{id}', 'HomeController@details')->name('details')->middleware('auth');
+Route::get('/purchase/{id}', 'HomeController@purhase')->name('purchase')->middleware('auth');
 // profile
 Route::get('/profile', 'ProfileController@create')->name('profile')->middleware('auth');
 Route::post('/profile/store', 'ProfileController@store')->name('store-profile')->middleware('auth');

@@ -50,4 +50,10 @@ class HomeController extends Controller
 
         return view('user.details', compact('details'));
     }
+
+    public function purchase($id){
+        $details = Project::where('id', $id)->first();
+
+        return view('user.purchase', compact('details'));
+    }
 }
