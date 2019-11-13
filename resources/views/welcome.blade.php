@@ -95,7 +95,7 @@
     <section id="intro">
       <div class="intro-content">
         <h2>Welcome to Youvest!</h2>
-        <h3>Grow Your Money Funding Growing Businesses</h3>
+        <h3>YouVest Is A Speccial Community Where We Do Big Things Together</h3>
         <div>
           <a href="{{ route('register') }}" class="btn-get-started scrollto">Get Started</a>
         </div>
@@ -353,7 +353,7 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="span4">
+          <div class="span3">
             <div class="widget">
               <div class="footer_logo">
                 <h3><a href="index.html">YouVest</a></h3>
@@ -369,15 +369,16 @@
               </p>
             </div>
           </div>
-          <div class="span4">
+          <div class="span5">
             <div class="widget">
-              <h5 class="widgetheading">Browse pages</h5>
-              <ul class="link-list">
-                <li><a href="#">Our company</a></li>
-                <li><a href="#">Terms and conditions</a></li>
-                <li><a href="#">Privacy policy</a></li>
-              </ul>
-
+              <h5 class="widgetheading">How It Works</h5>
+                <p>You remember <u>division of labour</u> from primary school? Yes! That 
+                    is just how YouVest works. We are a community of people who have big dreams 
+                    which our resources alone may not be able to execute. So, rather than
+                    see our resources as insufficient, we pull them together into one big resource, 
+                    accomplish one big goal and enjoy the profit in proportion of our contributions
+                    while growing our capacity to accomplish that big dream.
+                </p>
             </div>
           </div>
           <div class="span4">
@@ -396,7 +397,7 @@
           <div class="row">
             <div class="span6">
               <div class="copyright">
-                <p><span>&copy; You International. All right reserved</span></p>
+                <p><span>&copy; UnyiOne International. All right reserved</span></p>
               </div>
 
             </div>

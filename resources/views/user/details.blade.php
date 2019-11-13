@@ -3,8 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="">
+            @foreach($projects as $project)
+
                 <div class="card-header">Details for {{ $project->title }}</div>
                 
                 @if (session('status'))
@@ -14,18 +16,16 @@
                 @endif
 
                 
-                    @foreach($users as $user)
                     <div class="row justify-content-center p-2">
                         <div class="col-md-3 card border-0 rounded-0 p-0 m-0">
                             {!! $project->details !!}
                         </div>
                     </div>
-                    @endforeach
-                    @endif
+
 
 
                 </div> 
-
+                @endforeach
             </div>
         </div>
     </div>
