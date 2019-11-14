@@ -67,7 +67,7 @@ class HomeController extends Controller
      * get the projects belonging to a user
      */
     public function myProjects(){
-        $projects = DB::table('projects')->where('id', $id)->get();
+        $projects = DB::table('projects')->where('id', auth()->user()->id)->get();
 
         return view('user.my-projects', compact('projects'));        
     }
