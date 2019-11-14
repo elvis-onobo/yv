@@ -33,8 +33,7 @@
                             </div>
                             
                             <p class="card-text"></p>
-                            <a href="{{ route('purchase', ['id' => $project->id ]) }}" class="btn btn-primary rounded-0">Purchase Slot</a>
-                            <a href="{{ route('details', ['id' => $project->id ]) }}" class="btn btn-primary rounded-0">Details</a>
+                            <a href="{{ route('purchase', ['id' => $project->id ]) }}" class="btn btn-primary rounded-0">Withdraw</a>
                         </div>
                     </div>
                     @endforeach
