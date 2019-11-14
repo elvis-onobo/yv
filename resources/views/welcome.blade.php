@@ -95,7 +95,7 @@
     <section id="intro">
       <div class="intro-content">
         <h2>Welcome to Youvest!</h2>
-        <h3>YouVest Is A Speccial Community Where We Do Big Things Together</h3>
+        <h3>YouVest Is A Special Community Where We Do Big Things Together</h3>
         <div>
           <a href="{{ route('register') }}" class="btn-get-started scrollto">Get Started</a>
         </div>
