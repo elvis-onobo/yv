@@ -18,8 +18,10 @@ class CreateInvestmentsTable extends Migration
             $table->string('user_id');//should not be unique because one user can invest more than once
             $table->string('project_id');
             $table->string('amount_invested');
+            $table->string('slots'); //number of slots bought by the user
             $table->string('duration');
             $table->string('roi');
+            $table->string('project_code');
             $table->timestamps();
         });
     }
