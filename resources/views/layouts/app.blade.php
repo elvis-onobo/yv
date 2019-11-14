@@ -136,9 +136,10 @@
                                 <a class="dropdown-item" href="{{ route('kin') }}">
                                     Next of Kin
                                 </a>
-                                <!-- <a class="dropdown-item" href="">
-                                    Apply
-                                </a> -->
+                                <a class="dropdown-item" href="{{ route('my-projects') }}">
+                                    My Projects
+                                </a>
+
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

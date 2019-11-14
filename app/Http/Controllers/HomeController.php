@@ -45,15 +45,36 @@ class HomeController extends Controller
         return view('home', compact('users', 'accounts', 'kins', 'projects'));
     }
 
+    /**
+     * show details of the project
+     */
     public function details($id){
         $projects = DB::table('projects')->where('id', $id)->get();
 
         return view('user.details', compact('projects'));
     }
 
+    /**
+     * show the purchase form
+     */
     public function purchase($id){
         $projects = DB::table('projects')->where('id', $id)->get();
 
         return view('user.purchase', compact('projects'));
+    }
+
+    /**
+     * get the projects belonging to a user
+     */
+    public function myProjects(){
+        $projects = DB::table('projects')->where('id', $id)->get();
+
+        return view('user.my-projects', compact('projects'));        
+    }
+
+    public function withdraw(){
+        $projects = DB::table('projects')->where('id', $id)->get();
+
+        return view('user.withdraw', compact('projects'));
     }
 }

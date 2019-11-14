@@ -16,24 +16,51 @@
                 
                     @foreach($projects as $project)
                     <div class="card border-0 rounded-0 m-1 col-md-12 p-0">
-                        <img class="card-img-top" src="{{ asset('storage/'.$project->project_picture) }}" alt="img" />
 
-                        <div class="card-body">
-                            <span class="card-title"><strong>{{ ucwords($project->title) }}</strong></span>
-                            <div class="small">Returns {{ ucwords($project->returns) }}% in {{ $project->duration }} months</div>
-                            
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6"><span class="small">&#8358;{{ ucwords($project->minimum_investment) }} Per Slot</span></div>
-                            </div>
-                            
-                            <form method="POST" action="{{ route('login') }}">
-                            
-                            <div class="form-group row mt-1">
+                        <form method="POST" action="{{ route('withdraw') }}">
                             @csrf
-                                <div class="col-md-6">
-                                    <input id="slots" type="number" class="" name="slots" value="{{ old('slots') }}" required autocomplete="number" placeholder="Number Of Slots To Buy" autofocus>
 
-                                    @error('slots')
+                            @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                            @endif
+
+                            <div class="form-group row">
+                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ $account->username }}" required autocomplete="username" autofocus>
+
+                                    @error('username')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="acc_number" class="col-md-4 col-form-label text-md-right">{{ __('Account Number') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="acc_number" type="number" class="form-control @error('phone') is-invalid @enderror" name="acc_number" value="{{  $account->acc_number }}" required autocomplete="acc_number">
+
+                                    @error('acc_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="bank" class="col-md-4 col-form-label text-md-right">{{ __('Bank') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="bank" type="text" class="form-control" name="bank" value="{{ $account->bank }}" required>
+                                
+                                    @error('bank')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -42,16 +69,14 @@
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-12 justify-content-center">
-                                <button type="submit" class="btn btn-primary rounded-0">
-                                    {{ __('Purchase Slot') }}
-                                </button>
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Update Account') }}
+                                    </button>
                                 </div>
                             </div>
+                        </form>
 
-                            <form>
-
-                        </div>
                     </div>
                     <div class="text-center">
                         <a href="#"  >Terms and Conditions Apply</a> 
@@ -60,7 +85,6 @@
                     
 
                 </div> 
-
             </div>
         </div>
     </div>
