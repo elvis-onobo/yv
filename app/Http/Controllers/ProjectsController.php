@@ -10,12 +10,6 @@ use Auth;
 
 class ProjectsController extends Controller
 {
-    /**
-     * show the project creation form
-     */
-    public function create(){
-        return view('admin.projects', compact('project'));
-    }
 
     /**
      * insert new project to db or update if exists
@@ -44,6 +38,7 @@ class ProjectsController extends Controller
         $project->risk = $request->risk;
         $project->partner = $request->partner;
         $project->details = $request->details;
+        $project->code = rand();
 
         // save the data and redirect accordingly
         if($project->save()){
