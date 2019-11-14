@@ -38,7 +38,7 @@ class ProjectsController extends Controller
         $project->risk = $request->risk;
         $project->partner = $request->partner;
         $project->details = $request->details;
-        $project->code = rand();
+        $project->code = bin2hex(random_bytes(6));
 
         // save the data and redirect accordingly
         if($project->save()){
