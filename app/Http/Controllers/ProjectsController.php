@@ -10,6 +10,13 @@ use Auth;
 
 class ProjectsController extends Controller
 {
+    /**
+     * show form
+     */
+    public function create(){
+        return view('admin.projects');
+    }
+
 
     /**
      * insert new project to db or update if exists
@@ -24,11 +31,13 @@ class ProjectsController extends Controller
             'minimum' => 'required',
             'risk' => 'required',
             'partner' => 'required',
-            'details' => 'required'
+            'details' => 'required',
+            'charge' => 'required'
         ]);
 
         $project = new Project;
         $project->created_by = auth()->user()->id;
+        $project->category_id = 1;
         $project->project_picture =  $request->file('picture')->store('projects', 'public');
         $project->title = $request->title;
         $project->returns = $request->returns;
@@ -37,6 +46,7 @@ class ProjectsController extends Controller
         $project->minimum_investment = $request->minimum;
         $project->risk = $request->risk;
         $project->partner = $request->partner;
+        $project->charge = $request->charge;
         $project->details = $request->details;
         $project->code = bin2hex(random_bytes(6));
 
