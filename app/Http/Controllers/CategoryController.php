@@ -13,13 +13,21 @@ class CategoryController extends Controller
      * show all the categories
      */
     public function index(){
-        return view('admin.category.all-categories');
+        $cat = DB::table('categories')->all();
+
+        return view('admin.category.all-categories', compact('cat'));
     } 
 
+    /**
+     * show the create form
+     */
     public function create(){
         return view('admin.category.category');
     }
 
+    /**
+     * store the category
+     */
     public function store(Request $request){
         $data = $request->validate([
             'category' => 'required'
@@ -42,7 +50,7 @@ class CategoryController extends Controller
     public function edit($id){
         $cat = DB::table('categories')->where('id', $id)->first();
 
-        return view('admin.category.edit-category');
+        return view('admin.category.edit-category', compact('cat'));
     }
 
     /**
