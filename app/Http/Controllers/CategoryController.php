@@ -13,9 +13,9 @@ class CategoryController extends Controller
      * show all the categories
      */
     public function index(){
-        $cat = DB::table('categories')->all();
+        $cats = DB::table('categories')->get();
 
-        return view('admin.category.all-categories', compact('cat'));
+        return view('admin.category.all-categories', compact('cats'));
     } 
 
     /**
@@ -56,7 +56,7 @@ class CategoryController extends Controller
     /**
      * update the category
      */
-    public function update($id){
+    public function update(Request $request, $id){
         $data = $request->validate([
             'category' => 'required'
         ]);

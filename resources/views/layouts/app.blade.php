@@ -75,8 +75,8 @@
                                 <a class="dropdown-item" href="{{ route('project') }}">
                                     Create Project
                                 </a>
-                                <a class="dropdown-item" href="{{ route('create-category') }}">
-                                    Create Category
+                                <a class="dropdown-item" href="{{ route('categories') }}">
+                                    Categories
                                 </a>
                                 <a class="dropdown-item" href="{{ route('password') }}">
                                     Post Return
