@@ -56,4 +56,8 @@ Route::middleware('auth:admin')->prefix('admin')->group(function(){
 // projects
 Route::get('/project/create', 'ProjectsController@create')->name('project')->middleware('auth:admin');
 Route::post('/project/store', 'ProjectsController@store')->name('store-project')->middleware('auth:admin');
-// investments
+// category
+Route::get('/category/create', 'CategoryController@create')->name('create-category')->middleware('auth:admin');
+Route::post('/category/store', 'CategoryController@store')->name('store-category')->middleware('auth:admin');
+Route::get('/category/edit', 'CategoryController@edit')->name('edit-category')->middleware('auth:admin');
+Route::post('/category/update', 'CategoryController@store')->name('update-category')->middleware('auth:admin');

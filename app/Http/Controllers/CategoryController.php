@@ -7,18 +7,42 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function create(){
-        return view('admin.category')
+        return view('admin.category');
     }
 
-    public function store(){
+    public function store(Request $request){
+        $data = $request->validate([
+            'category' => 'required'
+        ]);
+
+        $cat = new Category;
+        $cat->created_by = auth()->user()->id;
+        $cat->category = $request->category;
+
+        if($cat->save()){
+            return back()->with('status', 'Category created!');
+        }
+        return back()->with('status', 'Problem encountered, Category not created!');
 
     }
 
     public function edit(){
-
+        return view('admin.edit-category');
     }
 
-    public function update(){
+    public function update($id){
+        $data = $request->validate([
+            'category' => 'required'
+        ]);
+
+        $cat = [
+                'category' => $request->category
+            ];
+
+        if(DB::table('categories')->update($cat)){
+            return back()->with('status', 'category updated');
+        }
+        return back()->with('status', 'category not updated');
 
     }
 }
