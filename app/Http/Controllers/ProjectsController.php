@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Category;
 use App\Project;
 use Auth\User;
 use Auth;
@@ -14,7 +15,9 @@ class ProjectsController extends Controller
      * show form
      */
     public function create(){
-        return view('admin.projects');
+        $cat = DB::table('categories')->get();
+        
+        return view('admin.projects', compact('cat'));
     }
 
 

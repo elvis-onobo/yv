@@ -52,7 +52,6 @@ Route::post('/login/admin', 'AdminController@loginTheAdmin')->name('login-admin'
 Route::middleware('auth:admin')->prefix('admin')->group(function(){
     Route::get('/home', 'AdminController@home')->name('home');
 });
-
 // projects
 Route::get('/project/create', 'ProjectsController@create')->name('project')->middleware('auth:admin');
 Route::post('/project/store', 'ProjectsController@store')->name('store-project')->middleware('auth:admin');
