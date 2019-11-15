@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Create Category') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('create-category') }}">
+                    <form method="POST" action="{{ route('store-category') }}">
                         @csrf
 
                         <div class="form-group row">

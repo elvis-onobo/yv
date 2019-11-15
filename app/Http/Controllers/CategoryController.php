@@ -9,6 +9,13 @@ use Auth;
 
 class CategoryController extends Controller
 {
+    /**
+     * show all the categories
+     */
+    public function index(){
+        return view('admin.category.all-categories');
+    } 
+
     public function create(){
         return view('admin.category.category');
     }
@@ -29,10 +36,18 @@ class CategoryController extends Controller
 
     }
 
-    public function edit(){
+    /**
+     * edit the category
+     */
+    public function edit($id){
+        $cat = DB::table('categories')->where('id', $id)->first();
+
         return view('admin.category.edit-category');
     }
 
+    /**
+     * update the category
+     */
     public function update($id){
         $data = $request->validate([
             'category' => 'required'
@@ -42,7 +57,7 @@ class CategoryController extends Controller
                 'category' => $request->category
             ];
 
-        if(DB::table('categories')->update($cat)){
+        if(DB::table('categories')->where('id', $id)->update($cat)){
             return back()->with('status', 'category updated');
         }
         return back()->with('status', 'category not updated');

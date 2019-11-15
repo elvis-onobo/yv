@@ -59,5 +59,5 @@ Route::post('/project/store', 'ProjectsController@store')->name('store-project')
 // category
 Route::get('/category/create', 'CategoryController@create')->name('create-category')->middleware('auth:admin');
 Route::post('/category/store', 'CategoryController@store')->name('store-category')->middleware('auth:admin');
-Route::get('/category/edit', 'CategoryController@edit')->name('edit-category')->middleware('auth:admin');
+Route::get('/category/edit/{id}', 'CategoryController@edit')->name('edit-category')->middleware('auth:admin');
 Route::post('/category/update', 'CategoryController@store')->name('update-category')->middleware('auth:admin');
