@@ -37,7 +37,7 @@ class ProjectsController extends Controller
             'partner' => 'required',
             'details' => 'required',
             'charge' => 'required',
-            'category_id' => 'required'
+            'category' => 'required'
         ]);
 
         $project = new Project;
