@@ -71,4 +71,11 @@ class CategoryController extends Controller
         return back()->with('status', 'category not updated');
 
     }
+
+    /**
+     * select a category
+     */
+    public function select(){
+
+    }
 }
