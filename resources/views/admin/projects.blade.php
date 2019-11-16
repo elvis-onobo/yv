@@ -32,11 +32,32 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control @error('category') is-invalid @enderror" name="category"  value="{{ old('category') }}"  autocomplete="category">
+                                    <option value="">Select Project Category</option>
+                                
+                                @foreach($cats as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->category }}</option>
+                                @endforeach
+                                </select>
+
+                                @error('category')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="returns" class="col-md-4 col-form-label text-md-right">{{ __('Returns') }}</label>
 
                             <div class="col-md-6">
                                 <input id="returns" type="text" class="form-control" name="returns"  value="{{ old('returns') }}" >
                             </div>
+
                             @error('returns')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

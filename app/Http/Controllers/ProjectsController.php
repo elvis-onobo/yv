@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Project;
@@ -15,9 +16,9 @@ class ProjectsController extends Controller
      * show form
      */
     public function create(){
-        $cat = DB::table('categories')->get();
-        
-        return view('admin.projects', compact('cat'));
+        $cats = DB::table('categories')->get();
+
+        return view('admin.projects', compact('cats'));
     }
 
 
@@ -35,12 +36,13 @@ class ProjectsController extends Controller
             'risk' => 'required',
             'partner' => 'required',
             'details' => 'required',
-            'charge' => 'required'
+            'charge' => 'required',
+            'category_id' => 'required'
         ]);
 
         $project = new Project;
         $project->created_by = auth()->user()->id;
-        $project->category_id = 1;
+        $project->category_id = $request->category;
         $project->project_picture =  $request->file('picture')->store('projects', 'public');
         $project->title = $request->title;
         $project->returns = $request->returns;
