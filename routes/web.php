@@ -61,3 +61,5 @@ Route::get('/category/create', 'CategoryController@create')->name('create-catego
 Route::post('/category/store', 'CategoryController@store')->name('store-category')->middleware('auth:admin');
 Route::get('/category/edit/{id}', 'CategoryController@edit')->name('edit-category')->middleware('auth:admin');
 Route::post('/category/update/{id}', 'CategoryController@update')->name('update-category')->middleware('auth:admin');
+/**shows the  content of the category on the home page*/
+Route::get('/home/{id}', 'HomeController@select')->name('category')->middleware('auth');

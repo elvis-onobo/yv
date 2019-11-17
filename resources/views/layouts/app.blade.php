@@ -106,15 +106,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('register') }}">
-                                        Transportation
+                                    @foreach($cats as $cat)
+                                    <a class="dropdown-item" href="{{ route('category', ['id' => $cat->id ]) }}">
+                                       {{ $cat->category }} 
                                     </a>
-                                    <a class="dropdown-item" href="">
-                                        Agriculture
-                                    </a>
-                                    <a class="dropdown-item" href="">
-                                        Food Production
-                                    </a>
+                                    @endforeach
                                 </div>
                             </li>
 

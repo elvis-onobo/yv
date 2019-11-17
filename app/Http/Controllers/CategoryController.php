@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Project;
 use Auth;
 
 class CategoryController extends Controller
@@ -73,12 +74,12 @@ class CategoryController extends Controller
     }
 
     /**
-     * select a category
+     * returns all products in the selected category
      * receives category id
      */
     public function select($id){
-        $cat = DB::table('projects')->where('category_id', $id)->get();
+        $cats = DB::table('projects')->where('category_id', $id)->get();
 
-        return view('home', compact('cat'));
+        return view('home', compact('cats'));
     }
 }

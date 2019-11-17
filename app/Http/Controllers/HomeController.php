@@ -41,8 +41,10 @@ class HomeController extends Controller
         $accounts = DB::table('accounts')->where('user_id', auth()->user()->id)->get();
         $kins = DB::table('kins')->where('user_id', auth()->user()->id)->get();
         $projects = DB::table('projects')->paginate(6);
+        $cats = DB::table('categories')->get();
+        $cat_projects = DB::table('projects')->where('category_id', $id)->get();
 
-        return view('home', compact('users', 'accounts', 'kins', 'projects'));
+        return view('home', compact('users', 'accounts', 'kins', 'projects', 'cat_projects'));
     }
 
     /**
