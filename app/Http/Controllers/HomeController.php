@@ -94,4 +94,9 @@ class HomeController extends Controller
 
         return view('user.pay', compact('projects', 'cats', 'slots', 'user'));
     }
+
+    public function verify_payment($reference){
+        $url = 'https://api.paystack.co/transaction/verify/:reference';
+
+    }
 }

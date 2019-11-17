@@ -32,6 +32,7 @@
                             key: 'pk_test_aa9329d3c4b89960b496a2e699d03c4339e8f819',
                             email: email,
                             amount: price,
+                            metadata: {},
                             container: 'paystackEmbedContainer',
                             callback: function(response){
                                     alert('successfully subscribed. transaction ref is ' + response.reference);
