@@ -43,7 +43,7 @@ class HomeController extends Controller
         $projects = DB::table('projects')->paginate(6);
         $cats = DB::table('categories')->get();
 
-        return view('home', compact('users', 'accounts', 'kins', 'projects'));
+        return view('home', compact('users', 'accounts', 'kins', 'projects', 'cats'));
     }
 
     /**
@@ -77,23 +77,5 @@ class HomeController extends Controller
         $projects = DB::table('projects')->where('id', $id)->get();
 
         return view('user.withdraw', compact('projects'));
-    }
-
-    public function category($id)
-    {
-        $users = DB::table('users')
-                    ->join('profiles', 'users.id', 'profiles.user_id')
-                    ->select('users.*', 'profiles.phone', 'profiles.dob',
-                            'profiles.address', 'profiles.nationality',
-                            'profiles.gender', 'profiles.picture')
-                    ->where('users.id', auth()->user()->id)
-                    ->get();
-        $accounts = DB::table('accounts')->where('user_id', auth()->user()->id)->get();
-        $kins = DB::table('kins')->where('user_id', auth()->user()->id)->get();
-        $projects = DB::table('projects')->paginate(6);
-        $cats = DB::table('categories')->get();
-        $cat_projects = DB::table('projects')->where('category_id', $id)->get();
-
-        return view('home', compact('users', 'accounts', 'kins', 'projects', 'cat_projects'));
     }
 }
