@@ -28,7 +28,7 @@ Route::get('/details/{id}', 'HomeController@details')->name('details')->middlewa
 Route::get('/purchase/{id}', 'HomeController@purchase')->name('purchase')->middleware('auth');
 Route::get('/my-projects', 'HomeController@myProjects')->name('my-projects')->middleware('auth');
 Route::get('/withdraw/{id}', 'HomeController@withdraw')->name('withdraw')->middleware('auth');
-Route::post('/pay/{price}', 'HomeController@pay')->name('pay')->middleware('auth');
+Route::post('/pay/{id}', 'HomeController@pay')->name('pay')->middleware('auth');
 // profile
 Route::get('/profile', 'ProfileController@create')->name('profile')->middleware('auth');
 Route::post('/profile/store', 'ProfileController@store')->name('store-profile')->middleware('auth');

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="">
 
                 
@@ -15,49 +15,29 @@
 
                 
                     <div class="card border-0 rounded-0 m-1 col-md-12 p-0">
-                        <img class="card-img-top" src="{{ asset('storage/'.$project->project_picture) }}" alt="img" />
-
+                        @php
+                            $amount = $slots * str_replace(',', '', $projects->minimum_investment)
+                        @endphp
                         <div class="card-body">
-                            <span class="card-title"><strong>{{ ucwords($project->title) }}</strong></span>
-                            <div class="small">Returns {{ ucwords($project->returns) }}% in {{ $project->duration }} months</div>
                             
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6"><span class="small">&#8358;{{ ucwords($project->minimum_investment) }} Per Slot</span></div>
-                            </div>
-                            
-                            <form >
-                                <script src="https://js.paystack.co/v1/inline.js"></script>
-                                <button type="button" onclick="payWithPaystack()"> Pay </button>
-                            </form>
-                            <script>
-                                function payWithPaystack(){
-                                    var handler = PaystackPop.setup({
-                                        key: 'pk_test_86d32aa1nV4l1da7120ce530f0b221c3cb97cbcc',
-                                        email: 'customer@email.com',
-                                        amount: 10000,
-                                        currency: "NGN",
-                                        ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference.
-                                        firstname: 'Stephen',
-                                        lastname: 'King',
-                                        // label: "Optional string that replaces customer email"
-                                        metadata: {
-                                        custom_fields: [
-                                            {
-                                                display_name: "Mobile Number",
-                                                variable_name: "mobile_number",
-                                                value: "+2348012345678"
-                                            }
-                                        ]},
-                                        callback: function(response){
-                                        alert('success. transaction ref is ' + response.reference);
-                                        },
-                                        onClose: function(){
-                                        alert('window closed');
-                                        }
-                                });
-                                handler.openIframe();
-                                }
-                                </script>
+                        <form >
+                        <script src="https://js.paystack.co/v1/inline.js"></script>
+                        <div id="paystackEmbedContainer"></div>
+
+                        <script>
+                        var price =  {!! json_encode($amount, JSON_HEX_TAG)  !!};
+                        var price = price * 100;
+                        var email = {!! json_encode($user->email, JSON_HEX_TAG)  !!};
+                        PaystackPop.setup({
+                            key: 'pk_test_aa9329d3c4b89960b496a2e699d03c4339e8f819',
+                            email: email,
+                            amount: price,
+                            container: 'paystackEmbedContainer',
+                            callback: function(response){
+                                    alert('successfully subscribed. transaction ref is ' + response.reference);
+                                },
+                        });
+                        </script>
 
                         </div>
                     </div>

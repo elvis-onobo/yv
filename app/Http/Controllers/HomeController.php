@@ -83,10 +83,15 @@ class HomeController extends Controller
         return view('user.withdraw', compact('projects', 'cats'));
     }
 
-    public function pay(Request $request, $price){
-        $price = str_replace(',', '', $price);
-        $amount = $request->slots * $price;
-        return $amount;
-        return view('user.pay', compact('amount'));
+    public function pay(Request $request, $id){
+        $request->validate([
+            'slots' => 'required'
+        ]);
+        $user = User::where('id', auth()->user()->id)->first();
+        $cats = DB::table('categories')->get();
+        $projects = DB::table('projects')->where('id', $id)->first();
+        $slots =  $request->slots;
+
+        return view('user.pay', compact('projects', 'cats', 'slots', 'user'));
     }
 }
