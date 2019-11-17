@@ -21,7 +21,9 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('user.profile');
+        $cats = DB::table('categories')->get();
+
+        return view('user.profile', compact('cats'));
     }
 
     /**
@@ -68,8 +70,9 @@ class ProfileController extends Controller
     public function edit()
     {
         $profile = Profile::where('user_id', auth()->user()->id)->first();
-        
-        return view('user.edit-profile', compact('profile'));
+        $cats = DB::table('categories')->get();        
+
+        return view('user.edit-profile', compact('profile', 'cats'));
     }
 
     /**

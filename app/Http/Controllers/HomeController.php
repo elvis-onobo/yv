@@ -51,8 +51,9 @@ class HomeController extends Controller
      */
     public function details($id){
         $projects = DB::table('projects')->where('id', $id)->get();
+        $cats = DB::table('categories')->get();
 
-        return view('user.details', compact('projects'));
+        return view('user.details', compact('projects', 'cats'));
     }
 
     /**
@@ -60,8 +61,9 @@ class HomeController extends Controller
      */
     public function purchase($id){
         $projects = DB::table('projects')->where('id', $id)->get();
+        $cats = DB::table('categories')->get();
 
-        return view('user.purchase', compact('projects'));
+        return view('user.purchase', compact('projects', 'cats'));
     }
 
     /**
@@ -69,13 +71,15 @@ class HomeController extends Controller
      */
     public function myProjects(){
         $projects = DB::table('projects')->where('id', auth()->user()->id)->get();
+        $cats = DB::table('categories')->get();
 
-        return view('user.my-projects', compact('projects'));        
+        return view('user.my-projects', compact('projects', 'cats'));        
     }
 
     public function withdraw(){
         $projects = DB::table('projects')->where('id', $id)->get();
+        $cats = DB::table('categories')->get();
 
-        return view('user.withdraw', compact('projects'));
+        return view('user.withdraw', compact('projects', 'cats'));
     }
 }

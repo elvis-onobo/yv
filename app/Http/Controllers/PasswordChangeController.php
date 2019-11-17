@@ -11,7 +11,9 @@ use Auth;
 class PasswordChangeController extends Controller
 {
     public function password(){
-        return view('auth.passwords.update');
+        $cats = DB::table('categories')->get();
+
+        return view('auth.passwords.update', compact('cats'));
     }
 
     public function update(Request $request){
