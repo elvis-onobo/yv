@@ -18,7 +18,9 @@ class KinController extends Controller
      */
     public function create()
     {   
-        return view('user.kin', compact('kin'));
+        $cats = DB::table('categories')->get();
+
+        return view('user.kin', compact('cats'));
     }
 
     /**
@@ -61,8 +63,9 @@ class KinController extends Controller
     public function edit()
     {
         $kin = Kin::find(auth()->user()->id)->first();
+        $cats = DB::table('categories')->get();
 
-        return view('user.edit-kin', compact('kin'));
+        return view('user.edit-kin', compact('kin','cats'));
     }
 
     public function update(Request $request){
