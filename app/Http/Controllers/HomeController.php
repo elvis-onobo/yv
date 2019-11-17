@@ -82,4 +82,11 @@ class HomeController extends Controller
 
         return view('user.withdraw', compact('projects', 'cats'));
     }
+
+    public function pay(Request $request, $price){
+        $price = str_replace(',', '', $price);
+        $amount = $request->slots * $price;
+        return $amount;
+        return view('user.pay', compact('amount'));
+    }
 }
