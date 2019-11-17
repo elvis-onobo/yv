@@ -74,8 +74,11 @@ class CategoryController extends Controller
 
     /**
      * select a category
+     * receives category id
      */
-    public function select(){
+    public function select($id){
+        $cat = DB::table('projects')->where('category_id', $id)->get();
 
+        return view('home', compact('cat'));
     }
 }
