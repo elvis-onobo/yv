@@ -24,7 +24,6 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-Route::get('/home/{id}', 'HomeController@category')->name('category')->middleware('auth');
 Route::get('/details/{id}', 'HomeController@details')->name('details')->middleware('auth');
 Route::get('/purchase/{id}', 'HomeController@purchase')->name('purchase')->middleware('auth');
 Route::get('/my-projects', 'HomeController@myProjects')->name('my-projects')->middleware('auth');
@@ -62,3 +61,4 @@ Route::get('/category/create', 'CategoryController@create')->name('create-catego
 Route::post('/category/store', 'CategoryController@store')->name('store-category')->middleware('auth:admin');
 Route::get('/category/edit/{id}', 'CategoryController@edit')->name('edit-category')->middleware('auth:admin');
 Route::post('/category/update/{id}', 'CategoryController@update')->name('update-category')->middleware('auth:admin');
+Route::get('/category/{id}', 'CategoryController@category')->name('category')->middleware('auth');

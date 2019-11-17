@@ -77,9 +77,10 @@ class CategoryController extends Controller
      * returns all products in the selected category
      * receives category id
      */
-    public function select($id){
-        $cats = DB::table('projects')->where('category_id', $id)->get();
+    public function category($id){
+        $projects = DB::table('projects')->where('category_id', $id)->paginate(12);
+        $cats = DB::table('categories')->get();
 
-        return view('home', compact('cats'));
+        return view('user.category', compact('projects', 'cats'));
     }
 }
