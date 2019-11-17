@@ -26,7 +26,7 @@
                                 <div class="col-md-6 col-sm-6"><span class="small">&#8358;{{ ucwords($project->minimum_investment) }} Per Slot</span></div>
                             </div>
                             
-                            <form method="POST" action="{{ route('login') }}">
+                            <form method="POST" action="{{ route('pay') }}">
                             
                             <div class="form-group row mt-1">
                             @csrf

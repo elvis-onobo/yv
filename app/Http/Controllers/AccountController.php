@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Account;
 use App\User;
@@ -17,7 +18,9 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('user.account', compact('account'));
+        $cats = DB::table('categories')->get();
+
+        return view('user.account', compact('cats'));
     }
 
     /**
@@ -59,8 +62,9 @@ class AccountController extends Controller
     public function edit()
     {
         $account = Account::find(auth()->user()->id)->first();
+        $cats = DB::table('categories')->get();
 
-        return view('user.account', compact('account'));
+        return view('user.account', compact('account', 'cats'));
     }
 
     /**

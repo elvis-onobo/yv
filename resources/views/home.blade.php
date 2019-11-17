@@ -60,7 +60,7 @@
                         <div class="col-md-12">
                             <div class="col-md-4"><i class="icon-circled icon-bglight icon-facebook"></i></div>
                             <div class="col-md-8">
-                                <p>Current Investment</p>
+                                <p>Net Asset Value</p>
                                 12345
                             </div>    
                         </div>
