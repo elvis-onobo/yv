@@ -37,8 +37,15 @@
                             container: 'paystackEmbedContainer',
                             callback: function(response){
                                     //alert('successfully subscribed. transaction ref is ' + response.reference);
-                                    var ref = response.reference;
-                                    window.location.href='{{ route("verify", ["reference"=>  ]) }}';
+                                    
+                                    //redirect to verify url
+                                    //window.location.href= '/youvest/public/verify/'+response.reference;
+
+                                    //get the base path
+                                    var path = window.location.origin+window.location.pathname;
+
+                                    //redirect to the verification url
+                                    window.location.href = path+'/verify/'+response.reference;
                                 },
                         });
                         </script>

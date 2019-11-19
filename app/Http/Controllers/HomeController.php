@@ -98,7 +98,7 @@ class HomeController extends Controller
     /**
      * verifies if a payment was successful
      */
-    public function verify_payment(){
+    public function verify_payment($reference){
         //set the headers and method
         $opt = [
             "http" => [
@@ -109,7 +109,7 @@ class HomeController extends Controller
 
         $con = stream_context_create($opt);
 
-        $data = file_get_contents('https://api.paystack.co/transaction/verify/T663603495807161', false, $con);
+        $data = file_get_contents('https://api.paystack.co/transaction/verify/'.$reference, false, $con);
 
 
         if($data){
