@@ -119,10 +119,16 @@ class HomeController extends Controller
             if($json_data){
                 //check if status is successful
                 if($json_data['data']['status'] === 'success'){
-                    return 'tranx verified';
-                }
-            }
-        }
+                    //insert metadata to transactions table
 
+                }else{
+                    return back()->with('status', 'Sorry, Your the paymeent was not successful');
+                }
+            }else{
+                return back()->with('status', 'Data could not be converted to JSON. Please report to admin');
+            }
+        }else{
+            return back()->with('status', 'You are not authorized to make this transaction');
+        }
     }
 }
