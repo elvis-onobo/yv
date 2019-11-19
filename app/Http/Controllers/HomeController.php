@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Transaction;
 use App\Account;
 use App\Project;
 use App\Profile;
@@ -42,8 +43,9 @@ class HomeController extends Controller
         $kins = DB::table('kins')->where('user_id', auth()->user()->id)->get();
         $projects = DB::table('projects')->paginate(6);
         $cats = DB::table('categories')->get();
+        $tranx = DB::table('transactions')->where('user_id', auth()->user()->id)->first();
 
-        return view('home', compact('users', 'accounts', 'kins', 'projects', 'cats'));
+        return view('home', compact('users', 'accounts', 'kins', 'projects', 'cats', 'tranx'));
     }
 
     /**
@@ -120,6 +122,22 @@ class HomeController extends Controller
                 //check if status is successful
                 if($json_data['data']['status'] === 'success'){
                     //insert metadata to transactions table
+                    
+                    $tranx = new Transaction;
+                    $tranx->user_id = $json_data['data']['metadata']['user'];
+                    $tranx->project_id = $json_data['data']['metadata']['project'];
+                    $tranx->tranx_type = $json_data['data']['metadata']['tranx'];
+                    $tranx->amount_invested = $json_data['data']['metadata']['amount']/100;
+                    $tranx->slots = $json_data['data']['metadata']['slot'];
+                    $tranx->duration = $json_data['data']['metadata']['duration'];
+                    $tranx->roi = $json_data['data']['metadata']['roi'];
+                    $tranx->project_code = $json_data['data']['metadata']['code'];
+
+                    if($tranx->save()){
+                        return redirect('/home')->with('status', 'Your transaction was successful');
+                    }else{
+                        return redirect('/home')->with('status', 'Your transaction did not finish processing, please contact admin');
+                    }
 
                 }else{
                     return back()->with('status', 'Sorry, Your the paymeent was not successful');

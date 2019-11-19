@@ -47,14 +47,15 @@
                                 user: user_id,
                                 project: project_id,
                                 tranx: tranx_type,
+                                amount: price,
                                 slot: slots,
                                 duration: duration,
                                 roi: roi,
                                 code: code
                             },
                             customer: {
-                                first_name: 
-                            }
+                                first_name: username
+                            },
                             container: 'paystackEmbedContainer',
                             callback: function(response){
                                     //alert('successfully subscribed. transaction ref is ' + response.reference);
