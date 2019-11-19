@@ -95,8 +95,34 @@ class HomeController extends Controller
         return view('user.pay', compact('projects', 'cats', 'slots', 'user'));
     }
 
-    public function verify_payment($reference){
-        $url = 'https://api.paystack.co/transaction/verify/:reference';
+    /**
+     * verifies if a payment was successful
+     */
+    public function verify_payment(){
+        //set the headers and method
+        $opt = [
+            "http" => [
+                'method' => 'GET',
+                'header' => 'Authorization: Bearer sk_test_03396cc3b78b097e34327027910859c1a5a8f973',
+            ]
+        ];
+
+        $con = stream_context_create($opt);
+
+        $data = file_get_contents('https://api.paystack.co/transaction/verify/T663603495807161', false, $con);
+
+
+        if($data){
+            //convert data to json
+            $json_data = json_decode($data, true);
+            //check if data is json
+            if($json_data){
+                //check if status is successful
+                if($json_data['data']['status'] === 'success'){
+                    return 'tranx verified';
+                }
+            }
+        }
 
     }
 }

@@ -14,15 +14,16 @@
                 @endif
 
                 
-                    <div class="card border-0 rounded-0 m-1 col-md-12 p-0">
+                    <div class="card border-0 rounded-0 m-1 col-md-12">
                         @php
                             $amount = $slots * str_replace(',', '', $projects->minimum_investment)
                         @endphp
                         <div class="card-body">
                             
-                        <form >
+                        <form>
                         <script src="https://js.paystack.co/v1/inline.js"></script>
                         <div id="paystackEmbedContainer"></div>
+                        </div>
 
                         <script>
                         var price =  {!! json_encode($amount, JSON_HEX_TAG)  !!};
@@ -35,7 +36,9 @@
                             metadata: {},
                             container: 'paystackEmbedContainer',
                             callback: function(response){
-                                    alert('successfully subscribed. transaction ref is ' + response.reference);
+                                    //alert('successfully subscribed. transaction ref is ' + response.reference);
+                                    var ref = response.reference;
+                                    window.location.href='{{ route("verify", ["reference"=>  ]) }}';
                                 },
                         });
                         </script>
