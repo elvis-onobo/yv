@@ -21,7 +21,7 @@
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror rounded-0" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -35,7 +35,7 @@
                             <label for="acc_number" class="col-md-4 col-form-label text-md-right">{{ __('Account Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="acc_number" type="number" class="form-control @error('phone') is-invalid @enderror" name="acc_number" value="{{ old('acc_number') }}" required autocomplete="acc_number">
+                                <input id="acc_number" type="number" class="form-control @error('phone') is-invalid @enderror rounded-0" name="acc_number" value="{{ old('acc_number') }}" required autocomplete="acc_number">
 
                                 @error('acc_number')
                                     <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
 
                             <div class="col-md-6">
                                 <!-- <input id="bank" type="text" class="form-control" name="bank" value="{{ old('bank') }}" required> -->
-                                <select id="bank" type="text" class="form-control" name="bank" value="{{ old('bank') }}" required>
+                                <select id="bank" type="text" class="form-control rounded-0" name="bank" value="{{ old('bank') }}" required>
                                     <option>Choose Your Bank</option>
                                     @for($i=0; $i< count($data['data']); $i++)
                                         <option value="{{ $data['data'][$i]['code'] }}">{{ $data['data'][$i]['name'] }}</option>
@@ -67,7 +67,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary rounded-0">
-                                    {{ __('Update Account') }}
+                                    {{ __('Add Account') }}
                                 </button>
                             </div>
                         </div>
