@@ -49,8 +49,14 @@
                             <label for="bank" class="col-md-4 col-form-label text-md-right">{{ __('Bank') }}</label>
 
                             <div class="col-md-6">
-                                <input id="bank" type="text" class="form-control" name="bank" value="{{ $account->bank }}" required>
-                            
+                                <select id="bank" type="text" class="form-control" name="bank"  required>
+                                
+                                <option value="{{ $account->bank }}">{{ $account->bank_name }}"</option>
+                                    @for($i=0; $i< count($data['data']); $i++)
+                                        <option value="{{ $data['data'][$i]['code'] }}">{{ $data['data'][$i]['name'] }}</option>
+                                    @endfor
+                                </select>
+
                                 @error('bank')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -61,7 +61,7 @@
                             <div class="col-md-4"><i class="icon-circled icon-bglight icon-facebook"></i></div>
                             <div class="col-md-8">
                                 <p>Net Asset Value</p>
-                                12345
+                                {{-- $tranx->amount_invested --}} 
                             </div>    
                         </div>
 
@@ -70,12 +70,12 @@
 
                     <div class="col-md-3 card card border-0 rounded-0 m-1 p-2 bg-primary text-white">
                         <p>Expected Returns</p>
-                        12345
+                        {{-- $tranx->roi --}} 
                     </div>
 
                     <div class="col-md-3 card card border-0 rounded-0 m-1 p-2 bg-success text-white">
                         <p>Number of Investments</p>
-                        12345
+                         {{-- $tranx->id --}} 
                     </div>
                 </div>
 

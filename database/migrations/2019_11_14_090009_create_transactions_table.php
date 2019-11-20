@@ -23,6 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->string('duration');
             $table->string('roi');
             $table->string('project_code');
+            $table->string('authorization');
             $table->timestamps();
         });
     }

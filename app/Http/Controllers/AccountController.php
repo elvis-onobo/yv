@@ -18,9 +18,23 @@ class AccountController extends Controller
      */
     public function create()
     {
+        //get the list of banks and pass it
+        $opt = [
+            "http" => [
+                'method' => 'GET',
+                'header' => 'Authorization: Bearer sk_test_03396cc3b78b097e34327027910859c1a5a8f973',
+            ]
+        ];
+
+        $con = stream_context_create($opt);
+
+        $datas = file_get_contents('https://api.paystack.co/bank', false, $con);
+        
+        $data = json_decode($datas, true);
+
         $cats = DB::table('categories')->get();
 
-        return view('user.account', compact('cats'));
+        return view('user.account', compact('cats', 'data'));
     }
 
     /**
@@ -61,10 +75,23 @@ class AccountController extends Controller
      */
     public function edit()
     {
+        $opt = [
+            "http" => [
+                'method' => 'GET',
+                'header' => 'Authorization: Bearer sk_test_03396cc3b78b097e34327027910859c1a5a8f973',
+            ]
+        ];
+
+        $con = stream_context_create($opt);
+
+        $datas = file_get_contents('https://api.paystack.co/bank', false, $con);
+        
+        $data = json_decode($datas, true);
+
         $account = Account::find(auth()->user()->id)->first();
         $cats = DB::table('categories')->get();
 
-        return view('user.account', compact('account', 'cats'));
+        return view('user.account', compact('account', 'cats', 'data'));
     }
 
     /**
